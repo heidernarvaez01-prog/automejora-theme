@@ -23,71 +23,20 @@
             "vertical_alignment": "center",
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "flex-end",
             "gap": 14,
             "inherit_color_scheme": false,
             "color_scheme": "scheme-6",
-            "toggle_overlay": true,
+            "toggle_overlay": false,
             "overlay_color": "#00000059",
             "overlay_style": "solid",
             "gradient_direction": "to top",
-            "padding-block-start": 40,
-            "padding-block-end": 40,
+            "padding-block-start": 0,
+            "padding-block-end": 32,
             "padding-inline-start": 40,
             "padding-inline-end": 40
           },
           "blocks": {
-            "text_heading": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h2>Sorpresas que enamoran</h2>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h1",
-                "font": "var(--font-heading--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 20,
-                "padding-block-end": 20,
-                "padding-inline-start": 30,
-                "padding-inline-end": 30
-              },
-              "blocks": {}
-            },
-            "text_subheading": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Regalos para hacer brillar cualquier ocasión, con entrega el mismo día en CDMX y Edoméx.</p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1.1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "",
-                "background": true,
-                "background_color": "#00000059",
-                "corner_radius": 0,
-                "padding-block-start": 20,
-                "padding-block-end": 20,
-                "padding-inline-start": 30,
-                "padding-inline-end": 30
-              },
-              "blocks": {}
-            },
             "button_cta": {
               "type": "button",
               "settings": {
@@ -104,8 +53,6 @@
             }
           },
           "block_order": [
-            "text_heading",
-            "text_subheading",
             "button_cta"
           ]
         },
