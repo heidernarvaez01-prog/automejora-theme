@@ -33,7 +33,7 @@
     {%- if block_settings.toggle_overlay -%}
       {% render 'overlay', settings: block_settings %}
     {%- endif -%}
-    {%- if preview_image -%}
+    {%- if preview_image or block_settings.media_type_1 == 'video_asset' -%}
       {%- liquid
         assign height = preview_image.width | divided_by: preview_image.aspect_ratio | round
         assign media_width_desktop = '100vw'
@@ -63,6 +63,10 @@
           | image_url: width: 3840
           | image_tag: height: height, sizes: sizes, widths: widths, class: 'slide__image', loading: loading, fetchpriority: fetchpriority
         }}
+      {%- elsif block_settings.media_type_1 == 'video_asset' -%}
+        <video class="slide__video" autoplay muted loop playsinline preload="auto">
+          <source src="{{ block_settings.video_asset | asset_url }}" type="video/mp4">
+        </video>
       {%- else -%}
         {%- if block_settings.video_1.preview_image -%}
 
@@ -211,6 +215,10 @@
         {
           "value": "video",
           "label": "t:options.video"
+        },
+        {
+          "value": "video_asset",
+          "label": "Video (archivo del tema)"
         }
       ],
       "default": "image"
@@ -226,6 +234,13 @@
       "id": "video_1",
       "label": "t:settings.video",
       "visible_if": "{{ block.settings.media_type_1 == 'video' }}"
+    },
+    {
+      "type": "text",
+      "id": "video_asset",
+      "label": "Video (assets/)",
+      "info": "Nombre del archivo en la carpeta assets del tema, ej: hero-video.mp4",
+      "visible_if": "{{ block.settings.media_type_1 == 'video_asset' }}"
     },
     {
       "type": "header",
