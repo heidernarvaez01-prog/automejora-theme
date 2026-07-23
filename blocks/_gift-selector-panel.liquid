@@ -1,0 +1,105 @@
+
+
+{% liquid
+  assign block_settings = block.settings
+  assign block_index = section.blocks | find_index: 'id', block.id
+
+  assign image_url = block_settings.fallback_image | asset_url
+  if block_settings.image != blank
+    assign image_url = block_settings.image | image_url: width: 1400
+  endif
+%}
+
+<button
+  type="button"
+  class="gift-selector__option"
+  data-index="{{ block_index }}"
+  data-link="{{ block_settings.link }}"
+  style="background-image: url('{{ image_url }}');"
+  aria-label="{{ block_settings.title | strip_html }}"
+  {{ block.shopify_attributes }}
+>
+  <span class="gift-selector__shadow" aria-hidden="true"></span>
+  <span class="gift-selector__label">
+    <span class="gift-selector__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        {%- case block_settings.icon -%}
+          {%- when 'heart' -%}
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/>
+          {%- when 'flower' -%}
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 3c1.5 2 1.5 4 0 6-1.5-2-1.5-4 0-6ZM12 21c1.5-2 1.5-4 0-6-1.5 2-1.5 4 0 6ZM3 12c2-1.5 4-1.5 6 0-2 1.5-4 1.5-6 0ZM21 12c-2-1.5-4-1.5-6 0 2 1.5 4 1.5 6 0Z"/>
+          {%- when 'cake' -%}
+            <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/>
+            <path d="M4 21h16"/>
+            <path d="M12 11V7"/>
+            <path d="M9 7c0-1 .5-1.5 1-2-.5-.5-1-1-1-2M15 7c0-1-.5-1.5-1-2 .5-.5 1-1 1-2"/>
+            <path d="M4 15.5c1 .8 2 .8 3 0s2-.8 3 0 2 .8 3 0 2-.8 3 0 2 .8 3 0"/>
+          {%- when 'sparkles' -%}
+            <path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/>
+          {%- else -%}
+            <path d="M20 12v9H4v-9"/>
+            <path d="M2 7h20v5H2z"/>
+            <path d="M12 22V7"/>
+            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C10 2 12 7 12 7ZM12 7h4.5a2.5 2.5 0 0 0 0-5C14 2 12 7 12 7Z"/>
+        {%- endcase -%}
+      </svg>
+    </span>
+    <span class="gift-selector__info">
+      <span class="gift-selector__title">{{ block_settings.title }}</span>
+      <span class="gift-selector__subtitle">{{ block_settings.subtitle }}</span>
+    </span>
+  </span>
+</button>
+
+{% schema %}
+{
+  "name": "Panel",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Brunch Sorpresa"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Desayunos gourmet a domicilio"
+    },
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Ícono",
+      "options": [
+        { "value": "gift", "label": "Regalo" },
+        { "value": "heart", "label": "Corazón" },
+        { "value": "flower", "label": "Flor" },
+        { "value": "cake", "label": "Pastel" },
+        { "value": "sparkles", "label": "Destellos" }
+      ],
+      "default": "gift"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Enlace",
+      "info": "A dónde va la persona al hacer clic en el panel expandido."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen",
+      "info": "Si se deja vacío, se usa la imagen de respaldo del tema."
+    },
+    {
+      "type": "text",
+      "id": "fallback_image",
+      "label": "Imagen de respaldo (nombre de archivo en assets/)",
+      "default": "cover-brunch.jpg"
+    }
+  ]
+}
+{% endschema %}

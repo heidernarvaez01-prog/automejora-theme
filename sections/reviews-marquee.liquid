@@ -1,0 +1,464 @@
+
+
+<script src="{{ 'reviews-marquee.js' | asset_url }}" type="module"></script>
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="reviews-section section spacing-style section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}" style="{% render 'spacing-style', settings: section.settings %}">
+  <div class="reviews-section__heading">
+    <div class="reviews-section__badge">
+      <span class="reviews-section__stars">
+        {% for i in (1..5) %}
+          <span class="reviews-section__star-icon"></span>
+        {% endfor %}
+      </span>
+      <span class="reviews-section__badge-label">Excelente</span>
+    </div>
+    {% if section.settings.heading != blank %}
+      <h2 class="reviews-section__title">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
+      <p class="reviews-section__subtitle">{{ section.settings.subheading }}</p>
+    {% endif %}
+    {% if section.settings.validate_url != blank %}
+      <a href="{{ section.settings.validate_url }}" target="_blank" rel="noopener noreferrer" class="reviews-section__validate">
+        Puedes validarlo en Google
+      </a>
+    {% endif %}
+  </div>
+
+  <div class="reviews-marquee-wrapper">
+    <reviews-marquee-component
+      class="reviews-marquee"
+      data-source="{{ 'reviews.json' | asset_url }}"
+      data-limit="{{ section.settings.review_limit }}"
+      data-review-url="{{ section.settings.review_url }}"
+    >
+      <div class="reviews-marquee__track"></div>
+    </reviews-marquee-component>
+    <span class="reviews-marquee__fade reviews-marquee__fade--left" aria-hidden="true"></span>
+    <span class="reviews-marquee__fade reviews-marquee__fade--right" aria-hidden="true"></span>
+  </div>
+
+  {% if section.settings.qr_image != blank or section.settings.review_url != blank %}
+    <div class="reviews-cta">
+      {% if section.settings.qr_image != blank %}
+        <div class="reviews-cta__qr">
+          {{ section.settings.qr_image | image_url: width: 320 | image_tag: alt: 'Código QR para dejar reseña en Google', loading: 'lazy' }}
+        </div>
+      {% endif %}
+      <div class="reviews-cta__content">
+        <h3 class="reviews-cta__title">¿Te encantó tu experiencia?</h3>
+        <p class="reviews-cta__text">Escanea el código QR o haz clic en el botón para compartir tu reseña en Google. ¡Nos ayuda muchísimo!</p>
+        {% if section.settings.review_url != blank %}
+          <a href="{{ section.settings.review_url }}" target="_blank" rel="noopener noreferrer" class="reviews-cta__button">
+            Dejar mi reseña
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  :root {
+    --trustpilot-green: #00b67a;
+  }
+
+  .reviews-section__heading {
+    text-align: center;
+    max-width: 42rem;
+    margin: 0 auto 40px;
+  }
+
+  .reviews-section__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .reviews-section__stars {
+    display: flex;
+    gap: 4px;
+  }
+
+  .reviews-section__star-icon,
+  .reviews-marquee__star {
+    width: 22px;
+    height: 22px;
+    background-color: var(--trustpilot-green);
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+  }
+
+  .reviews-marquee__star {
+    width: 16px;
+    height: 16px;
+    background-color: #dcdce6;
+  }
+
+  .reviews-marquee__star--on {
+    background-color: var(--trustpilot-green);
+  }
+
+  .reviews-section__star-icon::after,
+  .reviews-marquee__star::after {
+    content: '★';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.7em;
+  }
+
+  .reviews-section__badge-label {
+    font-family: var(--font-body--family);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-foreground-heading);
+  }
+
+  .reviews-section__title {
+    font-family: var(--font-heading--family);
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: var(--color-foreground-heading);
+    margin: 0 0 12px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .reviews-section__title {
+      font-size: 3rem;
+    }
+  }
+
+  .reviews-section__subtitle {
+    font-family: var(--font-body--family);
+    color: var(--color-foreground-muted);
+    margin: 0;
+  }
+
+  .reviews-section__validate {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-family: var(--font-body--family);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--trustpilot-green);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .reviews-marquee-wrapper {
+    position: relative;
+  }
+
+  .reviews-marquee__track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 16px;
+    scrollbar-width: none;
+  }
+
+  .reviews-marquee__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reviews-marquee__card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 320px;
+    flex-shrink: 0;
+    padding: 20px;
+    border-radius: var(--style-border-radius-cards, 10px);
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  @media screen and (min-width: 750px) {
+    .reviews-marquee__card {
+      width: 360px;
+    }
+  }
+
+  .reviews-marquee__card:hover {
+    border-color: var(--trustpilot-green);
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.08);
+    transform: translateY(-2px);
+  }
+
+  .reviews-marquee__card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .reviews-marquee__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    font-family: var(--font-body--family);
+    font-weight: 600;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .reviews-marquee__meta {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .reviews-marquee__name {
+    font-family: var(--font-body--family);
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--color-foreground-heading);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .reviews-marquee__verified {
+    font-family: var(--font-body--family);
+    font-size: 0.75rem;
+    color: var(--color-foreground-muted);
+  }
+
+  .reviews-marquee__stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .reviews-marquee__text {
+    margin: 0;
+    font-family: var(--font-body--family);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-foreground);
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .reviews-marquee__fade {
+    position: absolute;
+    top: 0;
+    bottom: 16px;
+    width: 64px;
+    pointer-events: none;
+  }
+
+  .reviews-marquee__fade--left {
+    left: 0;
+    background: linear-gradient(to right, var(--color-background), transparent);
+  }
+
+  .reviews-marquee__fade--right {
+    right: 0;
+    background: linear-gradient(to left, var(--color-background), transparent);
+  }
+
+  .reviews-cta {
+    max-width: 56rem;
+    margin: 48px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    border-radius: var(--style-border-radius-cards, 16px);
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+
+  @media screen and (min-width: 750px) {
+    .reviews-cta {
+      flex-direction: row;
+      text-align: left;
+      padding: 32px;
+    }
+  }
+
+  .reviews-cta__qr {
+    flex-shrink: 0;
+    padding: 12px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+  }
+
+  .reviews-cta__qr img {
+    display: block;
+    width: 128px;
+    height: 128px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .reviews-cta__qr img {
+      width: 160px;
+      height: 160px;
+    }
+  }
+
+  .reviews-cta__content {
+    text-align: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .reviews-cta__content {
+      text-align: left;
+    }
+  }
+
+  .reviews-cta__title {
+    font-family: var(--font-heading--family);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--color-foreground-heading);
+    margin: 0 0 8px;
+  }
+
+  .reviews-cta__text {
+    font-family: var(--font-body--family);
+    font-size: 0.9rem;
+    color: var(--color-foreground-muted);
+    margin: 0 0 16px;
+  }
+
+  .reviews-cta__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    background: var(--trustpilot-green);
+    color: #fff;
+    font-family: var(--font-body--family);
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgb(0 182 122 / 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .reviews-cta__button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgb(0 182 122 / 0.45);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Reseñas de clientes",
+  "tag": "section",
+  "class": "reviews-section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Lo que dicen nuestros clientes"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subtítulo",
+      "default": "Basado en 100+ reseñas reales en Google. Reseñas verificadas de personas que confiaron en nosotros."
+    },
+    {
+      "type": "range",
+      "id": "review_limit",
+      "label": "Reseñas a mostrar",
+      "min": 10,
+      "max": 106,
+      "step": 2,
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Enlaces de Google"
+    },
+    {
+      "type": "url",
+      "id": "review_url",
+      "label": "Enlace para dejar reseña"
+    },
+    {
+      "type": "url",
+      "id": "validate_url",
+      "label": "Enlace para validar reseñas"
+    },
+    {
+      "type": "image_picker",
+      "id": "qr_image",
+      "label": "Código QR de reseña"
+    },
+    {
+      "type": "header",
+      "content": "Apariencia"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reseñas de clientes",
+      "category": "t:categories.text"
+    }
+  ]
+}
+{% endschema %}

@@ -11,6 +11,24 @@
   "type": "header",
   "name": "Header",
   "sections": {
+    "utility_bar_EaD0mc": {
+      "type": "utility-bar",
+      "name": "Barra de contacto",
+      "settings": {
+        "phone_number": "+52 1 55 2713 7733",
+        "phone_link": "https://wa.me/5215527137733?text=Hola%20Emociones%20a%20Domicilio%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20info.",
+        "email": "pedidos@emocionesadomicilio.com",
+        "social_label": "Síguenos:",
+        "whatsapp_url": "https://wa.me/5215527137733",
+        "instagram_url": "https://www.instagram.com/emocionesadomicilio_oficial/",
+        "facebook_url": "https://www.facebook.com/emocionesadomicilio",
+        "tiktok_url": "https://www.tiktok.com/@emocionesadomicilio_",
+        "section_width": "page-width",
+        "color_scheme": "scheme-5",
+        "padding-block-start": 8,
+        "padding-block-end": 8
+      }
+    },
     "header_announcements_9jGBFp": {
       "type": "header-announcements",
       "blocks": {
@@ -31,6 +49,7 @@
       "block_order": [
         "announcement_BxgCk9"
       ],
+      "disabled": true,
       "name": "t:names.announcement_bar",
       "settings": {
         "speed": 5,
@@ -61,7 +80,7 @@
           "static": true,
           "settings": {
             "menu": "main-menu",
-            "color_scheme": "",
+            "color_scheme": "scheme-5",
             "type_font_primary_size": "0.875rem",
             "menu_font_style": "inverse",
             "type_font_primary_link": "body",
@@ -81,7 +100,7 @@
       },
       "settings": {
         "logo_position": "left",
-        "menu_position": "left",
+        "menu_position": "center",
         "menu_row": "top",
         "show_search": true,
         "search_position": "right",
@@ -112,6 +131,7 @@
     }
   },
   "order": [
+    "utility_bar_EaD0mc",
     "header_announcements_9jGBFp",
     "header_section"
   ]

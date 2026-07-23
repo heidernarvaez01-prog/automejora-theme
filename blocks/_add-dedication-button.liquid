@@ -1,0 +1,100 @@
+{% doc %}
+  Adds the current product's selected variant to the cart and takes the
+  customer straight to /cart, where the delivery date/slot, occasion and
+  dedication fields live. Replaces the accelerated-checkout shortcuts
+  (Shop Pay, PayPal, etc.) that skip past personalization entirely.
+{% enddoc %}
+
+{% liquid
+  assign variant = closest.product.selected_or_first_available_variant
+%}
+
+{% if variant %}
+  <script src="{{ 'add-dedication-button.js' | asset_url }}" type="module"></script>
+
+  <add-dedication-button-component
+    class="add-dedication-button"
+    data-variant-id="{{ variant.id }}"
+    {{ block.shopify_attributes }}
+  >
+    <button type="button" class="add-dedication-button__cta" ref="button" on:click="/handleClick">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M12 21s-7.5-4.6-10-9.1C.6 8.4 2.3 4.5 6 4c2.1-.3 3.9.8 6 3 2.1-2.2 3.9-3.3 6-3 3.7.5 5.4 4.4 4 7.9-2.5 4.5-10 9.1-10 9.1Z"/>
+      </svg>
+      <span>{{ block.settings.label }}</span>
+    </button>
+    <p class="add-dedication-button__hint">{{ block.settings.hint }}</p>
+  </add-dedication-button-component>
+{% endif %}
+
+{% stylesheet %}
+  .add-dedication-button {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .add-dedication-button__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: var(--style-border-radius-buttons, 8px);
+    border: 1px solid var(--color-primary-button-background);
+    background: transparent;
+    color: var(--color-primary-button-background);
+    font-family: var(--font-body--family);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .add-dedication-button__cta:hover:not(:disabled) {
+    background: var(--color-primary-button-background);
+    color: var(--color-primary-button-text);
+  }
+
+  .add-dedication-button__cta:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .add-dedication-button__cta svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  .add-dedication-button__hint {
+    margin: 0;
+    text-align: center;
+    font-family: var(--font-body--family);
+    font-size: 0.75rem;
+    color: var(--color-foreground-muted, var(--color-foreground));
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Botón dedicatoria",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Texto del botón",
+      "default": "Agregar dedicatoria"
+    },
+    {
+      "type": "text",
+      "id": "hint",
+      "label": "Texto de ayuda",
+      "default": "Se agrega al carrito, donde eliges fecha, ocasión y mensaje"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,299 @@
+{% doc %}
+  Cart personalization block: delivery date/slot, occasion, dedication (cart
+  note) and a per-line observation (line item property). Everything persists
+  through Shopify's native AJAX Cart API — no external backend.
+{% enddoc %}
+
+<script src="{{ 'cart-personalization.js' | asset_url }}" type="module"></script>
+
+{% liquid
+  assign occasions = 'Cumpleaños,Amor,Aniversario,Agradecimiento,Amistad,Corporativo,Cualquier ocasión' | split: ','
+  assign selected_occasion = cart.attributes['Ocasión']
+%}
+
+<cart-personalization-component
+  class="cart-personalization spacing-style"
+  style="{% render 'spacing-style', settings: block.settings %}"
+  {{ block.shopify_attributes }}
+>
+  <h3 class="cart-personalization__title">Personaliza tu pedido</h3>
+
+  <div class="cart-personalization__grid">
+    <div class="cart-personalization__section cart-personalization__section--delivery">
+      {% render 'delivery-selector',
+        initial_date: cart.attributes['Fecha de entrega'],
+        initial_slot: cart.attributes['Horario de entrega'],
+        id_prefix: 'cart'
+      %}
+    </div>
+
+    <div class="cart-personalization__section cart-personalization__section--occasion">
+      <label
+        for="cart-occasion"
+        class="cart-personalization__label"
+      >Ocasión</label>
+      <select
+        id="cart-occasion"
+        class="cart-personalization__select"
+        ref="occasionSelect"
+        on:change="/handleFieldChange"
+      >
+        <option value="">Selecciona una ocasión</option>
+        {% for occasion in occasions %}
+          <option
+            value="{{ occasion }}"
+            {% if selected_occasion == occasion %}selected{% endif %}
+          >{{ occasion }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="cart-personalization__section cart-personalization__section--dedication">
+      <div class="cart-personalization__dedication-header">
+        <label
+          for="cart-dedication"
+          class="cart-personalization__label"
+        >Dedicatoria</label>
+        <button
+          type="button"
+          class="cart-personalization__clear"
+          ref="clearDedicationButton"
+          on:click="/handleClearDedication"
+        >Borrar</button>
+      </div>
+      <textarea
+        id="cart-dedication"
+        class="cart-personalization__textarea"
+        ref="dedicationInput"
+        maxlength="300"
+        rows="3"
+        on:input="/handleDedicationInput"
+        placeholder="Escribe el mensaje que acompañará tu regalo..."
+      >{{ cart.note }}</textarea>
+      <p class="cart-personalization__counter"><span ref="dedicationCount">{{ cart.note.size }}</span>/300</p>
+    </div>
+
+    {% if cart.items.size > 0 %}
+      <div class="cart-personalization__section cart-personalization__section--observations">
+        <span class="cart-personalization__label">Observaciones por producto</span>
+        <div class="cart-personalization__observations">
+          {% for item in cart.items %}
+            <div class="cart-personalization__observation-row">
+              <p class="cart-personalization__observation-title">{{ item.product.title }}</p>
+              <textarea
+                class="cart-personalization__textarea cart-personalization__textarea--small"
+                maxlength="200"
+                rows="1"
+                ref="observationInputs[]"
+                data-line-key="{{ item.key }}"
+                placeholder="Ej: sin mayonesa"
+              >{{ item.properties['Observación'] }}</textarea>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <p
+    class="cart-personalization__status"
+    ref="statusMessage"
+    aria-live="polite"
+  ></p>
+</cart-personalization-component>
+
+{% stylesheet %}
+  .cart-personalization {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px;
+    margin-top: 8px;
+    background: rgb(161 98 7 / 5%);
+    border: 1px solid rgb(161 98 7 / 18%);
+    border-radius: var(--style-border-radius-cards, 12px);
+  }
+
+  .cart-personalization__title {
+    font-family: var(--font-heading--family);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-foreground-heading);
+    margin: 0;
+  }
+
+  .cart-personalization__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .cart-personalization__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        'delivery delivery'
+        'occasion dedication'
+        'observations observations';
+      column-gap: 16px;
+      row-gap: 14px;
+      align-items: start;
+    }
+
+    .cart-personalization__section--delivery {
+      grid-area: delivery;
+    }
+
+    .cart-personalization__section--occasion {
+      grid-area: occasion;
+    }
+
+    .cart-personalization__section--dedication {
+      grid-area: dedication;
+    }
+
+    .cart-personalization__section--observations {
+      grid-area: observations;
+    }
+  }
+
+  .cart-personalization__section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 14px;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--style-border-radius-cards, 8px);
+  }
+
+  .cart-personalization__label {
+    font-family: var(--font-body--family);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-foreground-heading);
+  }
+
+  .cart-personalization__dedication-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .cart-personalization__clear {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--font-body--family);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-foreground-muted, var(--color-foreground));
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .cart-personalization__clear:hover {
+    color: var(--color-primary-button-background);
+  }
+
+  .cart-personalization__select {
+    max-width: 100%;
+    background-color: var(--color-input-background);
+    color: var(--color-input-text);
+    border: var(--style-border-width-inputs, 1px) solid var(--color-input-border);
+    border-radius: var(--style-border-radius-inputs, 6px);
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    font-family: var(--font-body--family);
+  }
+
+  .cart-personalization__textarea {
+    width: 100%;
+    max-width: 100%;
+    background-color: var(--color-input-background);
+    color: var(--color-input-text);
+    border: var(--style-border-width-inputs, 1px) solid var(--color-input-border);
+    border-radius: var(--style-border-radius-inputs, 6px);
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    font-family: var(--font-body--family);
+    resize: vertical;
+  }
+
+  .cart-personalization__textarea--small {
+    max-width: 100%;
+    resize: none;
+  }
+
+  .cart-personalization__counter {
+    margin: 0;
+    font-family: var(--font-body--family);
+    font-size: 0.75rem;
+    color: var(--color-foreground-muted, var(--color-foreground));
+    text-align: right;
+    max-width: 100%;
+  }
+
+  .cart-personalization__observations {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cart-personalization__observation-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .cart-personalization__observation-title {
+    margin: 0;
+    font-family: var(--font-body--family);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+  }
+
+  .cart-personalization__status {
+    margin: 0;
+    min-height: 1em;
+    font-family: var(--font-body--family);
+    font-size: 0.75rem;
+    color: var(--color-foreground-muted, var(--color-foreground));
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Personalización",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}

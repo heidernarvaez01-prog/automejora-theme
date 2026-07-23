@@ -1,0 +1,350 @@
+
+
+<script src="{{ 'arc-gallery.js' | asset_url }}" type="module"></script>
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<arc-gallery-component
+  class="arc-gallery section spacing-style section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+  style="{% render 'spacing-style', settings: section.settings %}"
+  data-start-angle="20"
+  data-end-angle="160"
+>
+  <div class="arc-gallery__ring">
+    {% content_for 'blocks' %}
+  </div>
+
+  <div class="arc-gallery__content">
+    {% if section.settings.heading != blank %}
+      <h2 class="arc-gallery__title">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
+      <p class="arc-gallery__subtitle">{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    {% if section.settings.show_badges %}
+      {% liquid
+        assign badge_icons = 'heart,gift,truck,sparkles' | split: ','
+        assign badge_labels = section.settings.badge_label_1 | append: '|' | append: section.settings.badge_label_2 | append: '|' | append: section.settings.badge_label_3 | append: '|' | append: section.settings.badge_label_4 | split: '|'
+        assign badge_sublabels = section.settings.badge_sublabel_1 | append: '|' | append: section.settings.badge_sublabel_2 | append: '|' | append: section.settings.badge_sublabel_3 | append: '|' | append: section.settings.badge_sublabel_4 | split: '|'
+      %}
+      <div class="arc-gallery__badges">
+        {% for icon in badge_icons %}
+          <div class="arc-gallery__badge">
+            <span class="arc-gallery__badge-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                {%- case icon -%}
+                  {%- when 'heart' -%}
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/>
+                  {%- when 'truck' -%}
+                    <path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8Z"/>
+                    <circle cx="5.5" cy="18.5" r="2.5"/>
+                    <circle cx="18.5" cy="18.5" r="2.5"/>
+                  {%- when 'sparkles' -%}
+                    <path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/>
+                  {%- else -%}
+                    <path d="M20 12v9H4v-9"/>
+                    <path d="M2 7h20v5H2z"/>
+                    <path d="M12 22V7"/>
+                    <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C10 2 12 7 12 7ZM12 7h4.5a2.5 2.5 0 0 0 0-5C14 2 12 7 12 7Z"/>
+                {%- endcase -%}
+              </svg>
+            </span>
+            <span class="arc-gallery__badge-text">
+              <span class="arc-gallery__badge-label">{{ badge_labels[forloop.index0] }}</span>
+              <span class="arc-gallery__badge-sublabel">{{ badge_sublabels[forloop.index0] }}</span>
+            </span>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</arc-gallery-component>
+
+{% stylesheet %}
+  .arc-gallery {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .arc-gallery__ring {
+    position: relative;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .arc-gallery__image {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    opacity: 0;
+    transform: translate(-50%, 60%) scale(0.85);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    border-radius: 16px;
+    box-shadow: var(--shadow-loud, 0 12px 30px rgb(0 0 0 / 0.18));
+    outline: 1px solid var(--color-border);
+    object-fit: cover;
+    background: var(--color-background);
+  }
+
+  .arc-gallery__image--in {
+    opacity: 1;
+    transform: translate(-50%, 50%) scale(1) rotate(var(--arc-rotate, 0deg));
+  }
+
+  .arc-gallery__content {
+    position: relative;
+    z-index: var(--layer-flat);
+    max-width: 48rem;
+    margin: 24px auto 0;
+    padding-inline: 24px;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .arc-gallery__content {
+      margin-top: 12px;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .arc-gallery__content {
+      margin-top: 0;
+    }
+  }
+
+  .arc-gallery__title {
+    font-family: var(--font-heading--family);
+    font-weight: 600;
+    font-size: 1.9rem;
+    letter-spacing: -0.01em;
+    color: var(--color-foreground-heading);
+    margin: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .arc-gallery__title {
+      font-size: 3.5rem;
+    }
+  }
+
+  .arc-gallery__subtitle {
+    margin: 16px 0 0;
+    font-family: var(--font-body--family);
+    font-size: 1.05rem;
+    color: var(--color-foreground-muted);
+  }
+
+  .arc-gallery__badges {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 46rem;
+    margin: 32px auto 0;
+    text-align: left;
+  }
+
+  @media screen and (min-width: 750px) {
+    .arc-gallery__badges {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+  }
+
+  .arc-gallery__badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 16px;
+    background: rgb(var(--color-shadow-rgb) / 0.04);
+    border: 1px solid var(--color-border);
+    transition: background-color 0.3s ease;
+  }
+
+  .arc-gallery__badge:hover {
+    background: rgb(var(--color-shadow-rgb) / 0.08);
+  }
+
+  .arc-gallery__badge-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--color-primary-button-background);
+    color: var(--color-primary-button-text);
+  }
+
+  .arc-gallery__badge-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .arc-gallery__badge-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .arc-gallery__badge-label {
+    font-family: var(--font-heading--family);
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--color-foreground-heading);
+    line-height: 1.2;
+  }
+
+  .arc-gallery__badge-sublabel {
+    font-family: var(--font-body--family);
+    font-size: 0.75rem;
+    color: var(--color-foreground-muted);
+    line-height: 1.2;
+    margin-top: 2px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Galería en arco",
+  "tag": "section",
+  "class": "arc-gallery-wrapper",
+  "blocks": [
+    { "type": "_arc-gallery-image" }
+  ],
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Momentos que se vuelven recuerdos"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subtítulo",
+      "default": "Cada entrega es una historia. Descubre las emociones que hemos llevado a domicilio."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badges",
+      "label": "Mostrar insignias de confianza",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Insignias de confianza"
+    },
+    {
+      "type": "text",
+      "id": "badge_label_1",
+      "label": "Insignia 1 — texto principal",
+      "default": "Más de 10,000"
+    },
+    {
+      "type": "text",
+      "id": "badge_sublabel_1",
+      "label": "Insignia 1 — texto secundario",
+      "default": "Clientes felices"
+    },
+    {
+      "type": "text",
+      "id": "badge_label_2",
+      "label": "Insignia 2 — texto principal",
+      "default": "Entregas en"
+    },
+    {
+      "type": "text",
+      "id": "badge_sublabel_2",
+      "label": "Insignia 2 — texto secundario",
+      "default": "CDMX y EdoMex"
+    },
+    {
+      "type": "text",
+      "id": "badge_label_3",
+      "label": "Insignia 3 — texto principal",
+      "default": "Envío"
+    },
+    {
+      "type": "text",
+      "id": "badge_sublabel_3",
+      "label": "Insignia 3 — texto secundario",
+      "default": "mismo día"
+    },
+    {
+      "type": "text",
+      "id": "badge_label_4",
+      "label": "Insignia 4 — texto principal",
+      "default": "Regalos"
+    },
+    {
+      "type": "text",
+      "id": "badge_sublabel_4",
+      "label": "Insignia 4 — texto secundario",
+      "default": "personalizados"
+    },
+    {
+      "type": "header",
+      "content": "Apariencia"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Galería en arco",
+      "category": "t:categories.storytelling",
+      "blocks": {
+        "img_1": { "type": "_arc-gallery-image", "settings": { "fallback_image": "cover-brunch.jpg" } },
+        "img_2": { "type": "_arc-gallery-image", "settings": { "fallback_image": "cover-flores.jpg" } },
+        "img_3": { "type": "_arc-gallery-image", "settings": { "fallback_image": "hero-couple.png" } },
+        "img_4": { "type": "_arc-gallery-image", "settings": { "fallback_image": "hero-heart-candy.png" } },
+        "img_5": { "type": "_arc-gallery-image", "settings": { "fallback_image": "caja-emociones.jpg" } },
+        "img_6": { "type": "_arc-gallery-image", "settings": { "fallback_image": "cover-boxes.jpg" } },
+        "img_7": { "type": "_arc-gallery-image", "settings": { "fallback_image": "cover-dulces.jpg" } },
+        "img_8": { "type": "_arc-gallery-image", "settings": { "fallback_image": "hero-sunflowers.png" } }
+      },
+      "block_order": ["img_1", "img_2", "img_3", "img_4", "img_5", "img_6", "img_7", "img_8"]
+    }
+  ]
+}
+{% endschema %}

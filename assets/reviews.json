@@ -1,0 +1,532 @@
+[
+  {
+    "name": "Marlen Valenzuela López",
+    "rating": 5,
+    "text": "Excelente servicio, muy formales y comprometidos. No tuve que preocuparme por nada después de confirmar el pedido."
+  },
+  {
+    "name": "Gabriela Hernández",
+    "rating": 5,
+    "text": "Súper recomendable. La entrega muy rápida y todo súper bonito como lo pedí. Me encantó la atención y la rapidez."
+  },
+  {
+    "name": "Rosa María Pérez",
+    "rating": 5,
+    "text": "Excelente el servicio y el producto. Llegó en perfecto estado y antes de la hora prometida."
+  },
+  {
+    "name": "Norma Hernández",
+    "rating": 5,
+    "text": "Completamente recomendable. Puntuales, atentos y con una gran disposición. Sin duda volveré a comprar."
+  },
+  {
+    "name": "Ale de la Paz",
+    "rating": 5,
+    "text": "Excelente servicio, producto de buena calidad y muy buena atención al cliente."
+  },
+  {
+    "name": "Avilés B. Ximena",
+    "rating": 5,
+    "text": "Todo llegó como lo esperaba. Muy contenta con mi compra, repetiré seguro."
+  },
+  {
+    "name": "José Francisco Gutiérrez",
+    "rating": 5,
+    "text": "Excelente servicio, detalles muy bonitos. La persona que lo recibió quedó encantada."
+  },
+  {
+    "name": "Viridiana Martínez",
+    "rating": 5,
+    "text": "Los productos son tal como se ven en las fotografías y con muy buena calidad."
+  },
+  {
+    "name": "Verónica Palacios",
+    "rating": 5,
+    "text": "Pedí un regalo para una compañera en la escuela de mi hija. Me avisaron cuando llegó. Buen servicio."
+  },
+  {
+    "name": "Lucía Miriam Cruz Flores",
+    "rating": 5,
+    "text": "Muy buen sabor, presentación impecable y cuidado en los detalles de mi pedido."
+  },
+  {
+    "name": "Dulce María De Gabriel",
+    "rating": 5,
+    "text": "El detalle llegó en perfecto estado. Lo recomiendo muchísimo para sorprender a seres queridos."
+  },
+  {
+    "name": "Evelyn Núñez",
+    "rating": 5,
+    "text": "¡Genial! Rápido y confiable. El regalo fue un lindo arreglo. Muy profesionales y atentos."
+  },
+  {
+    "name": "Roca Quinto",
+    "rating": 5,
+    "text": "Lo pedí de un día para otro y llegó sin problemas. Buena atención de principio a fin."
+  },
+  {
+    "name": "Martha Cabal",
+    "rating": 5,
+    "text": "Excelente servicio, me encantó. Sin duda lo volveré a comprar para otra ocasión especial."
+  },
+  {
+    "name": "Luis Gerardo López",
+    "rating": 5,
+    "text": "Excelente servicio, muchas gracias. Todo salió justo como lo planeé."
+  },
+  {
+    "name": "Imelda García",
+    "rating": 5,
+    "text": "100% confiable y recomendable. Página fácil de usar y con diferentes opciones de pago."
+  },
+  {
+    "name": "Mónica María Loaiza",
+    "rating": 5,
+    "text": "Soy de Colombia y la entrega fue tal cual la solicité. Gracias por hacerlo posible a distancia."
+  },
+  {
+    "name": "Beatriz Rendón",
+    "rating": 5,
+    "text": "Me encantó. Súper amables, muy atentos y accesibles. Mil por ciento recomendado."
+  },
+  {
+    "name": "Richard Pérez Rodríguez",
+    "rating": 5,
+    "text": "Buenísimo todo, el regalo llegó tal cual la foto. Muy recomendados."
+  },
+  {
+    "name": "Anaid TP",
+    "rating": 5,
+    "text": "Cumplieron con la hora exacta y el detalle era hermoso. Gracias por la atención."
+  },
+  {
+    "name": "Karla Mendoza",
+    "rating": 5,
+    "text": "Pedí un arreglo para mi mamá y llegó perfecto. Las flores fresquísimas y la presentación de lujo."
+  },
+  {
+    "name": "Andrés Robles",
+    "rating": 5,
+    "text": "Sorprendí a mi novia en su cumpleaños. Llegó puntual y ella amó cada detalle. Gracias."
+  },
+  {
+    "name": "Patricia Sánchez",
+    "rating": 5,
+    "text": "Compré desde el extranjero y todo salió impecable. Comunicación clara durante todo el proceso."
+  },
+  {
+    "name": "Daniela Ortega",
+    "rating": 5,
+    "text": "Hermoso detalle, muy bien empacado y entregado a tiempo. Repetiré sin duda."
+  },
+  {
+    "name": "Iván Cervantes",
+    "rating": 5,
+    "text": "Servicio rápido y honesto. Las fotos del catálogo son exactamente lo que recibí."
+  },
+  {
+    "name": "Sofía Ramírez",
+    "rating": 5,
+    "text": "Atención increíble por WhatsApp, resolvieron todas mis dudas en minutos."
+  },
+  {
+    "name": "Jorge Domínguez",
+    "rating": 5,
+    "text": "Llegó antes de la hora prometida. Mi esposa lloró de la emoción. Mil gracias."
+  },
+  {
+    "name": "Adriana Vega",
+    "rating": 5,
+    "text": "Excelente relación calidad-precio. Los productos se ven mucho mejor en persona."
+  },
+  {
+    "name": "Mariana Cortés",
+    "rating": 5,
+    "text": "El brunch llegó delicioso y muy bien presentado. Repetiremos seguro."
+  },
+  {
+    "name": "Fernando Castillo",
+    "rating": 5,
+    "text": "Profesionales de principio a fin. Recomendados al 100% para regalos sorpresa."
+  },
+  {
+    "name": "Lorena Aguilar",
+    "rating": 5,
+    "text": "Me encantó la dedicatoria personalizada. Detalle que marca la diferencia."
+  },
+  {
+    "name": "Pablo Estrada",
+    "rating": 5,
+    "text": "Hice mi pedido tarde y aun así cumplieron con la fecha. Increíble servicio."
+  },
+  {
+    "name": "Claudia Reyes",
+    "rating": 5,
+    "text": "Las fotos no le hacen justicia. En persona se ve aún más bonito."
+  },
+  {
+    "name": "Héctor Salazar",
+    "rating": 5,
+    "text": "Pedido entregado en tiempo y forma. La calidad superó mis expectativas."
+  },
+  {
+    "name": "Brenda Soto",
+    "rating": 5,
+    "text": "Súper detallistas con el empaque. Se nota que cuidan cada pedido."
+  },
+  {
+    "name": "Ricardo Méndez",
+    "rating": 5,
+    "text": "Excelente experiencia de compra. Página clara y proceso sencillo."
+  },
+  {
+    "name": "Yolanda Cárdenas",
+    "rating": 5,
+    "text": "Compré un arreglo para mi suegra y quedó fascinada. Muchas gracias por su servicio."
+  },
+  {
+    "name": "Diana Espinoza",
+    "rating": 5,
+    "text": "Cumplen lo que prometen. Llegó puntual y como se ve en la foto."
+  },
+  {
+    "name": "Alejandro Ríos",
+    "rating": 5,
+    "text": "Muy buen detalle para aniversario. Mi pareja quedó encantada con la sorpresa."
+  },
+  {
+    "name": "Gabriela Torres",
+    "rating": 5,
+    "text": "Súper recomendados. Atención personalizada y entrega impecable."
+  },
+  {
+    "name": "Erick Navarro",
+    "rating": 5,
+    "text": "Recibí actualización en cada paso. Tranquilidad total durante el envío."
+  },
+  {
+    "name": "Mayra Olivares",
+    "rating": 5,
+    "text": "El detalle de la tarjeta escrita a mano fue precioso. Muchas gracias."
+  },
+  {
+    "name": "Sergio Bautista",
+    "rating": 5,
+    "text": "Pedido entregado en zona complicada y aun así llegó a la hora. Excelente logística."
+  },
+  {
+    "name": "Itzel Carrasco",
+    "rating": 5,
+    "text": "Las fresas con chocolate estaban deliciosas y muy bien presentadas."
+  },
+  {
+    "name": "Roberto Aguilar",
+    "rating": 5,
+    "text": "Repetiré sin duda. Calidad, puntualidad y excelente atención."
+  },
+  {
+    "name": "Paola Jiménez",
+    "rating": 5,
+    "text": "Hermoso arreglo y muy bien embalado. Llegó intacto y fresco."
+  },
+  {
+    "name": "Cristina Méndez",
+    "rating": 5,
+    "text": "Increíble servicio al cliente. Resolvieron un cambio de dirección de último minuto."
+  },
+  {
+    "name": "Manuel Treviño",
+    "rating": 5,
+    "text": "Sorprendí a mi mamá en su cumpleaños. ¡Gracias por hacerlo posible!"
+  },
+  {
+    "name": "Vanessa Quintero",
+    "rating": 5,
+    "text": "Tienen variedad para todos los gustos y bolsillos. Súper recomendados."
+  },
+  {
+    "name": "Óscar Padilla",
+    "rating": 5,
+    "text": "Llegó exactamente a la hora pactada. Detallazo de principio a fin."
+  },
+  {
+    "name": "Lizbeth Rosas",
+    "rating": 5,
+    "text": "Me ayudaron a personalizar el regalo. Atención cálida y profesional."
+  },
+  {
+    "name": "Jesús Maldonado",
+    "rating": 5,
+    "text": "Compré desde Monterrey para entrega en CDMX y todo salió perfecto."
+  },
+  {
+    "name": "Andrea Beltrán",
+    "rating": 5,
+    "text": "Las flores duraron más de una semana frescas. Calidad real."
+  },
+  {
+    "name": "Tania Murillo",
+    "rating": 5,
+    "text": "Súper rápido el envío y muy bonito el detalle. Repetiré sin duda."
+  },
+  {
+    "name": "Eduardo Rangel",
+    "rating": 5,
+    "text": "Excelente comunicación. Me enviaron foto de entrega, super tranquilo todo."
+  },
+  {
+    "name": "Mónica Saavedra",
+    "rating": 5,
+    "text": "El vino y los chocolates estaban perfectos. Regalo elegante y emotivo."
+  },
+  {
+    "name": "Raúl Contreras",
+    "rating": 5,
+    "text": "Mi novia amó el ramo. Llegó hermoso y bien cuidado."
+  },
+  {
+    "name": "Karina Velasco",
+    "rating": 5,
+    "text": "Las opciones de personalización son geniales. Quedó único."
+  },
+  {
+    "name": "Esteban Lomelí",
+    "rating": 5,
+    "text": "Servicio confiable, ya es la tercera vez que compro con ellos."
+  },
+  {
+    "name": "Fátima Acosta",
+    "rating": 5,
+    "text": "Hermosa presentación. Vale cada peso."
+  },
+  {
+    "name": "Arturo Galván",
+    "rating": 5,
+    "text": "Pedí brunch para una reunión familiar y todos quedaron encantados."
+  },
+  {
+    "name": "Liliana Cano",
+    "rating": 5,
+    "text": "Excelente página, fácil de navegar y con muchas opciones."
+  },
+  {
+    "name": "Carlos Esquivel",
+    "rating": 5,
+    "text": "Detalle precioso para mi esposa. Gracias por la atención impecable."
+  },
+  {
+    "name": "Berenice Trujillo",
+    "rating": 5,
+    "text": "Las galletas decoradas estaban hermosas y deliciosas. Recomendadísimo."
+  },
+  {
+    "name": "Iliana Cárdenas",
+    "rating": 5,
+    "text": "Muy buen servicio, llegó antes de la hora y todo perfecto."
+  },
+  {
+    "name": "Hugo Linares",
+    "rating": 5,
+    "text": "Sorprendí a mi mamá a distancia. El video de entrega fue un plus increíble."
+  },
+  {
+    "name": "Magdalena Ruiz",
+    "rating": 5,
+    "text": "Cumplen al 100%. Productos frescos y entrega puntual."
+  },
+  {
+    "name": "Pamela Zúñiga",
+    "rating": 5,
+    "text": "Atención hermosa por WhatsApp, súper amables y rápidos para responder."
+  },
+  {
+    "name": "Joaquín Bravo",
+    "rating": 5,
+    "text": "Recomendados sin duda. Compré para San Valentín y llegó perfecto."
+  },
+  {
+    "name": "Susana Maldonado",
+    "rating": 5,
+    "text": "Las flores son frescas y la presentación es preciosa. Encantada."
+  },
+  {
+    "name": "Emilio Bárcenas",
+    "rating": 5,
+    "text": "Resolvieron un imprevisto de última hora con muchísima amabilidad."
+  },
+  {
+    "name": "Regina Camacho",
+    "rating": 5,
+    "text": "Súper bonita la caja sorpresa. Detallista en todos los aspectos."
+  },
+  {
+    "name": "Jonathan Mejía",
+    "rating": 5,
+    "text": "Excelente servicio para regalo de aniversario. Llegó tal cual la foto."
+  },
+  {
+    "name": "Carolina Pacheco",
+    "rating": 5,
+    "text": "Pedido perfecto, comunicación clara y entrega puntual. ¡Gracias!"
+  },
+  {
+    "name": "Mauricio Tovar",
+    "rating": 5,
+    "text": "Calidad premium. Vale totalmente la pena el precio."
+  },
+  {
+    "name": "Estefanía Lara",
+    "rating": 5,
+    "text": "Hermoso ramo y muy bien empacado. Llegó intacto a su destino."
+  },
+  {
+    "name": "Rodolfo Anaya",
+    "rating": 5,
+    "text": "Excelente atención y entrega en el horario que pedí. Recomendados."
+  },
+  {
+    "name": "Valeria Méndez",
+    "rating": 5,
+    "text": "Las fresas y el ramo combinados fueron el regalo perfecto. Gracias."
+  },
+  {
+    "name": "Israel Fuentes",
+    "rating": 5,
+    "text": "Compré para mi mamá en su cumpleaños y todo salió impecable."
+  },
+  {
+    "name": "Ximena Pliego",
+    "rating": 5,
+    "text": "Página muy intuitiva, fácil checkout y entrega rápida."
+  },
+  {
+    "name": "Gerardo Sandoval",
+    "rating": 5,
+    "text": "Muy buena experiencia de compra. Repetiré sin pensarlo."
+  },
+  {
+    "name": "Natalia Quintana",
+    "rating": 5,
+    "text": "Las opciones de brunch son una belleza, sabor y presentación excelentes."
+  },
+  {
+    "name": "Bruno Rentería",
+    "rating": 5,
+    "text": "Pedí desde Estados Unidos para entrega en CDMX. Todo perfecto."
+  },
+  {
+    "name": "Cecilia Arteaga",
+    "rating": 5,
+    "text": "Detalle precioso y muy bien empacado. La calidad se nota."
+  },
+  {
+    "name": "Damián Cervantes",
+    "rating": 5,
+    "text": "Excelente atención, me ayudaron a elegir el regalo ideal."
+  },
+  {
+    "name": "Renata Pineda",
+    "rating": 5,
+    "text": "Súper recomendados, entrega rápida y producto de calidad."
+  },
+  {
+    "name": "Felipe Arellano",
+    "rating": 5,
+    "text": "Cumplieron incluso antes de la hora prometida. Excelente servicio."
+  },
+  {
+    "name": "Bárbara Toledo",
+    "rating": 5,
+    "text": "Las flores se mantuvieron frescas por más de 10 días. Increíble calidad."
+  },
+  {
+    "name": "Nicolás Espinoza",
+    "rating": 5,
+    "text": "Sorpresa perfecta para mi pareja. Gracias por el detalle."
+  },
+  {
+    "name": "Wendy Calderón",
+    "rating": 5,
+    "text": "Atención cálida y entrega impecable. Repetiré sin duda alguna."
+  },
+  {
+    "name": "Alfredo Becerra",
+    "rating": 5,
+    "text": "Todo salió como lo prometieron. Comunicación constante y entrega puntual."
+  },
+  {
+    "name": "Marcela Villarreal",
+    "rating": 5,
+    "text": "Las galletas y chocolates estaban deliciosos. Presentación de revista."
+  },
+  {
+    "name": "Ulises Gámez",
+    "rating": 5,
+    "text": "Hice un cambio de última hora y me lo aceptaron sin problema. Gracias."
+  },
+  {
+    "name": "Jimena Robledo",
+    "rating": 5,
+    "text": "Compré para mi suegra y quedó encantada. Detalle elegante y emotivo."
+  },
+  {
+    "name": "Salvador Mata",
+    "rating": 5,
+    "text": "Entregaron en una zona complicada y aun así fue puntual. Excelentes."
+  },
+  {
+    "name": "Aurora Salinas",
+    "rating": 5,
+    "text": "Hermoso arreglo, calidad premium. Sin duda los volveré a contratar."
+  },
+  {
+    "name": "Tomás Velázquez",
+    "rating": 5,
+    "text": "Mi novia lloró de la emoción. Misión cumplida, gracias."
+  },
+  {
+    "name": "Daniela Lugo",
+    "rating": 5,
+    "text": "Servicio confiable y profesional. Recomendados al 100%."
+  },
+  {
+    "name": "Aldo Carbajal",
+    "rating": 5,
+    "text": "Muy buena calidad, las fresas frescas y el chocolate riquísimo."
+  },
+  {
+    "name": "Perla Montoya",
+    "rating": 5,
+    "text": "Pedido entregado en tiempo perfecto. Atención de 10."
+  },
+  {
+    "name": "Iván Madrigal",
+    "rating": 5,
+    "text": "Las opciones de pago son cómodas y la entrega súper rápida."
+  },
+  {
+    "name": "Sandra Escamilla",
+    "rating": 5,
+    "text": "Hermoso detalle para mi madre. Gracias por la atención impecable."
+  },
+  {
+    "name": "César Beltrán",
+    "rating": 5,
+    "text": "Cumplieron al pie de la letra. Sin duda repetiré para próximas ocasiones."
+  },
+  {
+    "name": "Mariana Solís",
+    "rating": 5,
+    "text": "Excelente experiencia desde el primer mensaje hasta la entrega final."
+  },
+  {
+    "name": "Rogelio Páez",
+    "rating": 5,
+    "text": "Calidad impecable, entrega puntual y atención cálida. Recomendadísimos."
+  },
+  {
+    "name": "Janet Romero",
+    "rating": 5,
+    "text": "Compré desde otro estado y todo salió perfecto. Confiables al 100%."
+  }
+]

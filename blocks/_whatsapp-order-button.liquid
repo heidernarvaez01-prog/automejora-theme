@@ -1,0 +1,78 @@
+{% doc %}
+  WhatsApp quick-order button for the product page. Builds a pre-filled
+  WhatsApp message with the current product's title and price — no backend,
+  just a wa.me link.
+{% enddoc %}
+
+{% liquid
+  assign block_settings = block.settings
+  assign product_price = closest.product.price | money_without_currency
+  assign message = 'Hola, quiero pedir: ' | append: closest.product.title | append: ' ($' | append: product_price | append: ' MXN)'
+  assign wa_url = block_settings.phone | prepend: 'https://wa.me/' | append: '?text=' | append: message | url_encode
+%}
+
+<a
+  href="{{ wa_url }}"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="whatsapp-order-button"
+  {{ block.shopify_attributes }}
+>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347Z"/>
+    <path d="M12.04 2.003c-5.517 0-9.997 4.48-9.997 10.003 0 1.764.457 3.454 1.324 4.947L2 22l5.184-1.359a9.936 9.936 0 0 0 4.856 1.263h.004c5.517 0 9.997-4.48 9.997-10.003 0-2.672-1.04-5.184-2.928-7.073a9.935 9.935 0 0 0-7.073-2.828Zm0 18.187h-.003a8.28 8.28 0 0 1-4.223-1.156l-.303-.18-3.076.807.82-2.998-.198-.308a8.276 8.276 0 0 1-1.269-4.35c0-4.573 3.72-8.293 8.256-8.293a8.222 8.222 0 0 1 5.845 2.423 8.222 8.222 0 0 1 2.417 5.85c0 4.573-3.72 8.293-8.266 8.293Z"/>
+  </svg>
+  <span>{{ block_settings.label }}</span>
+</a>
+
+{% stylesheet %}
+  .whatsapp-order-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: var(--style-border-radius-buttons-primary, 8px);
+    background-color: #25d366;
+    color: #fff;
+    font-family: var(--font-body--family);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 6px 16px rgb(37 211 102 / 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .whatsapp-order-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgb(37 211 102 / 0.4);
+  }
+
+  .whatsapp-order-button svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Botón WhatsApp",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Texto del botón",
+      "default": "Pedir por WhatsApp"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Teléfono (sin +, con código de país)",
+      "default": "5215527137733"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,297 @@
+
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="category-grid-section section spacing-style section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}" style="{% render 'spacing-style', settings: section.settings %}">
+  <div class="category-grid__heading">
+    {% if section.settings.heading != blank %}
+      <h2 class="category-grid__title">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
+      <p class="category-grid__subtitle">{{ section.settings.subheading }}</p>
+    {% endif %}
+  </div>
+  <div class="category-grid__cards">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .category-grid-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .category-grid__heading {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .category-grid__heading {
+      margin-bottom: 48px;
+    }
+  }
+
+  .category-grid__title {
+    font-family: var(--font-heading--family);
+    font-weight: 600;
+    font-size: 1.75rem;
+    color: var(--color-foreground-heading);
+    margin: 0 0 8px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .category-grid__title {
+      font-size: 3rem;
+    }
+  }
+
+  .category-grid__subtitle {
+    display: none;
+    font-family: var(--font-body--family);
+    color: var(--color-foreground-muted);
+    max-width: 34rem;
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: 750px) {
+    .category-grid__subtitle {
+      display: block;
+    }
+  }
+
+  .category-grid__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .category-grid__cards {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+  }
+
+  .category-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--style-border-radius-buttons, 12px);
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: var(--shadow-loud, 0 8px 24px rgb(0 0 0 / 0.08));
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  @media screen and (min-width: 990px) {
+    .category-card {
+      aspect-ratio: 4 / 5;
+    }
+  }
+
+  .category-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .category-card__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+
+  .category-card:hover .category-card__image {
+    transform: scale(1.1);
+  }
+
+  .category-card__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(0 0 0 / 0.78) 0%, rgb(0 0 0 / 0.35) 45%, rgb(0 0 0 / 0.05) 100%);
+  }
+
+  .category-card__badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    color: #fff;
+    backdrop-filter: blur(6px);
+  }
+
+  .category-card__badge svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .category-card__badge {
+      top: 16px;
+      left: 16px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+    }
+
+    .category-card__badge svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .category-card__content {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: 12px;
+    color: #fff;
+  }
+
+  @media screen and (min-width: 750px) {
+    .category-card__content {
+      padding: 20px;
+    }
+  }
+
+  .category-card__title {
+    display: block;
+    font-family: var(--font-heading--family);
+    font-weight: 600;
+    font-size: 0.9rem;
+    line-height: 1.2;
+  }
+
+  @media screen and (min-width: 750px) {
+    .category-card__title {
+      font-size: 1.25rem;
+    }
+  }
+
+  .category-card__cta {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-family: var(--font-body--family);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgb(255 255 255 / 0.9);
+    transition: gap 0.3s ease;
+  }
+
+  .category-card__cta svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .category-card__cta {
+      display: inline-flex;
+    }
+  }
+
+  .category-card:hover .category-card__cta {
+    gap: 10px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Cuadrícula de categorías",
+  "tag": "section",
+  "class": "category-grid-wrapper",
+  "blocks": [
+    {
+      "type": "_category-card"
+    }
+  ],
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Explora nuestras categorías"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subtítulo",
+      "default": "Cuatro mundos para encontrar el regalo perfecto."
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cuadrícula de categorías",
+      "category": "t:categories.collections",
+      "blocks": {
+        "card_1": {
+          "type": "_category-card",
+          "settings": { "title": "Chocolates & Dulces", "icon": "candy", "accent_color": "#c2542a", "fallback_image": "cover-chocolates.jpg", "link": "shopify://collections/chocolates-y-dulces" }
+        },
+        "card_2": {
+          "type": "_category-card",
+          "settings": { "title": "Regalos & Cajas", "icon": "gift", "accent_color": "#a16207", "fallback_image": "cover-regalos.jpg", "link": "shopify://collections/regalos-y-cajas" }
+        },
+        "card_3": {
+          "type": "_category-card",
+          "settings": { "title": "Desayunos & Brunch", "icon": "coffee", "accent_color": "#3f7a52", "fallback_image": "cover-brunch.jpg", "link": "shopify://collections/desayunos-y-brunch" }
+        },
+        "card_4": {
+          "type": "_category-card",
+          "settings": { "title": "Flores & Globos", "icon": "flower", "accent_color": "#c23368", "fallback_image": "cover-floresglobos.jpg", "link": "shopify://collections/flores-y-globos" }
+        }
+      },
+      "block_order": ["card_1", "card_2", "card_3", "card_4"]
+    }
+  ]
+}
+{% endschema %}

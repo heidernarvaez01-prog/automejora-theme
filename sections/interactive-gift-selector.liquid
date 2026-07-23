@@ -1,0 +1,358 @@
+
+
+<script src="{{ 'gift-selector.js' | asset_url }}" type="module"></script>
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="gift-selector-wrapper section color-{{ section.settings.color_scheme }}">
+  <gift-selector-component
+    class="gift-selector"
+    data-autoplay="{{ section.settings.autoplay_speed | times: 1000 }}"
+    style="--gift-selector-height-mobile: {{ section.settings.height_mobile }}vh; --gift-selector-height-desktop: {{ section.settings.height_desktop }}vh;"
+  >
+    <div class="gift-selector__options">
+      {% content_for 'blocks' %}
+    </div>
+
+    <div class="gift-selector__lightbox" hidden>
+      <button type="button" class="gift-selector__lightbox-close" aria-label="{{ 'accessibility.close' | t }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <img class="gift-selector__lightbox-image" src="" alt="" />
+      <div class="gift-selector__lightbox-caption">
+        <span class="gift-selector__lightbox-title"></span>
+        <span class="gift-selector__lightbox-subtitle"></span>
+      </div>
+    </div>
+  </gift-selector-component>
+</div>
+
+{% stylesheet %}
+  .gift-selector-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .gift-selector {
+    display: block;
+    width: 100%;
+    height: var(--gift-selector-height-mobile, 65vh);
+  }
+
+  @media screen and (min-width: 750px) {
+    .gift-selector {
+      height: var(--gift-selector-height-desktop, 80vh);
+    }
+  }
+
+  .gift-selector__options {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: stretch;
+    overflow: hidden;
+  }
+
+  .gift-selector__option {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    min-width: 36px;
+    min-height: 100px;
+    margin: 0;
+    padding: 0;
+    flex: 1 1 0%;
+    border: 2px solid rgb(var(--color-foreground-rgb) / 0.12);
+    background-color: var(--color-background);
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: flex-grow 0.7s ease-in-out, box-shadow 0.7s ease-in-out, border-color 0.4s ease-in-out,
+      opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.3);
+    z-index: 1;
+  }
+
+  .gift-selector__option--in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .gift-selector__option--active {
+    flex: 30 1 0%;
+    border-color: var(--color-primary-button-background);
+    box-shadow: 0 20px 60px rgb(var(--color-shadow-rgb) / 0.3);
+    z-index: 10;
+  }
+
+  .gift-selector__shadow {
+    position: absolute;
+    inset: auto 0 -40px 0;
+    height: 120px;
+    pointer-events: none;
+    box-shadow: inset 0 -120px 0px -120px #000, inset 0 -120px 0px -80px #000;
+    transition: inset 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
+  }
+
+  .gift-selector__option--active .gift-selector__shadow {
+    inset: auto 0 0 0;
+    box-shadow: inset 0 -120px 120px -120px #000, inset 0 -120px 120px -80px #000;
+  }
+
+  .gift-selector__label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-inline: 10px;
+    width: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .gift-selector__label {
+      bottom: 20px;
+      padding-inline: 16px;
+    }
+  }
+
+  .gift-selector__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgb(32 32 32 / 0.85);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--color-primary-button-background);
+    color: #fff;
+  }
+
+  .gift-selector__icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .gift-selector__icon {
+      width: 44px;
+      height: 44px;
+    }
+
+    .gift-selector__icon svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .gift-selector__info {
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+  }
+
+  .gift-selector__option--active .gift-selector__info {
+    opacity: 1;
+  }
+
+  .gift-selector__title {
+    display: block;
+    font-family: var(--font-heading--family);
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.2;
+  }
+
+  .gift-selector__subtitle {
+    display: none;
+    font-family: var(--font-body--family);
+    font-size: 0.8rem;
+    color: rgb(255 255 255 / 0.75);
+  }
+
+  @media screen and (min-width: 750px) {
+    .gift-selector__title {
+      font-size: 1.35rem;
+    }
+
+    .gift-selector__subtitle {
+      display: block;
+      font-size: 1rem;
+    }
+  }
+
+  .gift-selector__lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: var(--layer-modal, 100);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px;
+    background: rgb(0 0 0 / 0.9);
+    backdrop-filter: blur(4px);
+  }
+
+  .gift-selector__lightbox[hidden] {
+    display: none;
+  }
+
+  .gift-selector__lightbox-image {
+    max-height: 82vh;
+    max-width: 92vw;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgb(0 0 0 / 0.5);
+  }
+
+  .gift-selector__lightbox-caption {
+    text-align: center;
+    color: #fff;
+  }
+
+  .gift-selector__lightbox-title {
+    display: block;
+    font-family: var(--font-heading--family);
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+
+  .gift-selector__lightbox-subtitle {
+    display: block;
+    font-family: var(--font-body--family);
+    color: rgb(255 255 255 / 0.75);
+  }
+
+  .gift-selector__lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.1);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .gift-selector__lightbox-close:hover {
+    background: rgb(255 255 255 / 0.2);
+  }
+
+  .gift-selector__lightbox-close svg {
+    width: 20px;
+    height: 20px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Selector de regalos",
+  "tag": "section",
+  "class": "gift-selector-section",
+  "blocks": [
+    {
+      "type": "_gift-selector-panel"
+    }
+  ],
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Comportamiento"
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Velocidad de autoplay",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "s",
+      "default": 4.5,
+      "info": "0 desactiva el autoplay."
+    },
+    {
+      "type": "header",
+      "content": "Altura"
+    },
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "label": "Altura en móvil",
+      "min": 40,
+      "max": 100,
+      "step": 1,
+      "unit": "vh",
+      "default": 65
+    },
+    {
+      "type": "range",
+      "id": "height_desktop",
+      "label": "Altura en escritorio",
+      "min": 40,
+      "max": 100,
+      "step": 1,
+      "unit": "vh",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Apariencia"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Selector de regalos",
+      "category": "t:categories.banners",
+      "blocks": {
+        "panel_1": {
+          "type": "_gift-selector-panel",
+          "settings": { "title": "Brunch Sorpresa", "subtitle": "Desayunos gourmet a domicilio", "icon": "gift", "fallback_image": "cover-brunch.jpg", "link": "shopify://collections/desayunos-y-brunch" }
+        },
+        "panel_2": {
+          "type": "_gift-selector-panel",
+          "settings": { "title": "Amor & Aniversarios", "subtitle": "Regalos que dicen lo que sientes", "icon": "heart", "fallback_image": "hero-couple.png", "link": "shopify://collections/regalos-y-cajas" }
+        },
+        "panel_3": {
+          "type": "_gift-selector-panel",
+          "settings": { "title": "Flores Frescas", "subtitle": "Ramos que iluminan su día", "icon": "flower", "fallback_image": "cover-flores.jpg", "link": "shopify://collections/flores-y-globos" }
+        },
+        "panel_4": {
+          "type": "_gift-selector-panel",
+          "settings": { "title": "Cumpleaños", "subtitle": "Celebra con dulces y detalles", "icon": "cake", "fallback_image": "hero-heart-candy.png", "link": "shopify://collections/chocolates-y-dulces" }
+        },
+        "panel_5": {
+          "type": "_gift-selector-panel",
+          "settings": { "title": "Cajas Regalo", "subtitle": "Regalos especiales personalizados", "icon": "sparkles", "fallback_image": "caja-emociones.jpg", "link": "shopify://collections/regalos-y-cajas" }
+        }
+      },
+      "block_order": ["panel_1", "panel_2", "panel_3", "panel_4", "panel_5"]
+    }
+  ]
+}
+{% endschema %}

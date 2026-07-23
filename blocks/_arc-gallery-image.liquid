@@ -1,0 +1,42 @@
+
+
+{% liquid
+  assign block_settings = block.settings
+  assign image_url = block_settings.fallback_image | asset_url
+  if block_settings.image != blank
+    assign image_url = block_settings.image | image_url: width: 400
+  endif
+%}
+<img
+  src="{{ image_url }}"
+  alt="{{ block_settings.alt | default: 'Momento especial' }}"
+  loading="lazy"
+  class="arc-gallery__image"
+  draggable="false"
+  {{ block.shopify_attributes }}
+/>
+
+{% schema %}
+{
+  "name": "Imagen del arco",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "text",
+      "id": "fallback_image",
+      "label": "Imagen de respaldo (assets/)",
+      "default": "cover-flores.jpg"
+    },
+    {
+      "type": "text",
+      "id": "alt",
+      "label": "Texto alternativo"
+    }
+  ]
+}
+{% endschema %}

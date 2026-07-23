@@ -54,8 +54,28 @@
             "border_radius": 0
           },
           "blocks": {}
+        },
+        "cart-upsells": {
+          "type": "_cart-upsells",
+          "settings": {
+            "heading": "Complementa tu regalo",
+            "max_products": 8,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "cart-personalization": {
+          "type": "_cart-personalization",
+          "settings": {
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
         }
       },
+      "block_order": [
+        "cart-upsells",
+        "cart-personalization"
+      ],
       "settings": {
         "section_width": "page-width",
         "color_scheme": "",

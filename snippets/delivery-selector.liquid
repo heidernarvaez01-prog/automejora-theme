@@ -1,0 +1,154 @@
+{% doc %}
+  Delivery date + time-slot selector used by the cart personalization block.
+
+  @param {string} [initial_date] - Pre-filled ISO date (yyyy-mm-dd)
+  @param {string} [initial_slot] - Pre-filled slot id ('manana' | 'tarde')
+  @param {string} [id_prefix] - Prefix for element ids, in case this snippet renders more than once on a page
+
+  @example
+  {% render 'delivery-selector', initial_date: cart.attributes['Fecha de entrega'], initial_slot: cart.attributes['Horario de entrega'], id_prefix: 'cart' %}
+{% enddoc %}
+
+{% liquid
+  assign prefix = id_prefix | default: 'delivery'
+%}
+
+<script src="{{ 'delivery-selector.js' | asset_url }}" type="module"></script>
+
+<delivery-selector-component
+  class="delivery-selector"
+  data-initial-date="{{ initial_date }}"
+  data-initial-slot="{{ initial_slot }}"
+>
+  <div class="delivery-selector__field">
+    <label for="{{ prefix }}-delivery-date" class="delivery-selector__label">Fecha de entrega *</label>
+    <input
+      type="date"
+      id="{{ prefix }}-delivery-date"
+      class="delivery-selector__date-input"
+      ref="dateInput"
+      on:change="/handleDateChange"
+      required
+    >
+    <p class="delivery-selector__hint" ref="dateHint" hidden></p>
+  </div>
+
+  <div class="delivery-selector__field">
+    <span class="delivery-selector__label">Horario de entrega *</span>
+    <div class="delivery-selector__slots">
+      <button type="button" class="delivery-selector__slot" data-slot="manana" ref="slotButtons[]" on:click="/handleSlotClick" aria-pressed="false">
+        <span class="delivery-selector__slot-label">Mañana</span>
+        <span class="delivery-selector__slot-time">9:00 – 13:00</span>
+      </button>
+      <button type="button" class="delivery-selector__slot" data-slot="tarde" ref="slotButtons[]" on:click="/handleSlotClick" aria-pressed="false">
+        <span class="delivery-selector__slot-label">Tarde</span>
+        <span class="delivery-selector__slot-time">13:00 – 18:00</span>
+      </button>
+    </div>
+    <p class="delivery-selector__hint" ref="slotHint" hidden></p>
+  </div>
+</delivery-selector-component>
+
+{% stylesheet %}
+  .delivery-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .delivery-selector {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .delivery-selector__field {
+      flex: 1 1 220px;
+    }
+  }
+
+  .delivery-selector__field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .delivery-selector__label {
+    font-family: var(--font-body--family);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-foreground-heading);
+  }
+
+  .delivery-selector__date-input {
+    background-color: var(--color-input-background);
+    color: var(--color-input-text);
+    border: var(--style-border-width-inputs, 1px) solid var(--color-input-border);
+    border-radius: var(--style-border-radius-inputs, 6px);
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    font-family: var(--font-body--family);
+    max-width: 220px;
+  }
+
+  .delivery-selector__slots {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    max-width: 320px;
+  }
+
+  .delivery-selector__slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 8px;
+    border-radius: var(--style-border-radius-inputs, 8px);
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+    color: var(--color-foreground);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .delivery-selector__slot:hover:not(:disabled) {
+    border-color: var(--color-primary-button-background);
+  }
+
+  .delivery-selector__slot[aria-pressed='true'] {
+    border-color: var(--color-primary-button-background);
+    background: var(--color-primary-button-background);
+    color: var(--color-primary-button-text);
+  }
+
+  .delivery-selector__slot:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    text-decoration: line-through;
+  }
+
+  .delivery-selector__slot-label {
+    font-family: var(--font-body--family);
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  .delivery-selector__slot-time {
+    font-family: var(--font-body--family);
+    font-size: 0.75rem;
+    opacity: 0.85;
+  }
+
+  .delivery-selector__hint {
+    margin: 0;
+    font-family: var(--font-body--family);
+    font-size: 0.75rem;
+    color: var(--color-foreground-muted, var(--color-foreground));
+  }
+
+  .delivery-selector__hint--error {
+    color: #c0392b;
+  }
+{% endstylesheet %}

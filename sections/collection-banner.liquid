@@ -1,0 +1,178 @@
+
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="collection-banner section spacing-style section--full-width" style="{% render 'spacing-style', settings: section.settings %}">
+  <div class="collection-banner__media">
+    {%- if collection.image -%}
+      {{ collection.image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '100vw', widths: '750, 1100, 1500, 1600', alt: collection.title, class: 'collection-banner__image' }}
+    {%- elsif section.settings.fallback_image -%}
+      {{ section.settings.fallback_image | image_url: width: 1600 | image_tag: loading: 'eager', sizes: '100vw', alt: collection.title, class: 'collection-banner__image' }}
+    {%- endif -%}
+    <span class="collection-banner__scrim" aria-hidden="true"></span>
+  </div>
+
+  <div class="collection-banner__content">
+    <nav class="collection-banner__breadcrumbs" aria-label="Ruta de navegación">
+      <a href="{{ routes.root_url }}">Inicio</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ collection.title }}</span>
+    </nav>
+    <h1 class="collection-banner__title">{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <div class="collection-banner__description">{{ collection.description }}</div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .collection-banner {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .collection-banner__media {
+    position: relative;
+    height: 220px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .collection-banner__media {
+      height: 300px;
+    }
+  }
+
+  .collection-banner__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .collection-banner__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(0 0 0 / 0.7) 0%, rgb(0 0 0 / 0.4) 45%, rgb(0 0 0 / 0.1) 100%);
+  }
+
+  .collection-banner__content {
+    position: absolute;
+    inset: 0;
+    z-index: var(--layer-flat);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 6px;
+    padding: 16px var(--page-margin, 16px) 24px;
+    max-width: var(--page-width, 1400px);
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  @media screen and (min-width: 750px) {
+    .collection-banner__content {
+      padding-bottom: 32px;
+    }
+  }
+
+  .collection-banner__breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body--family);
+    font-size: 0.8rem;
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .collection-banner__breadcrumbs a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .collection-banner__breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .collection-banner__title {
+    font-family: var(--font-heading--family);
+    font-weight: 600;
+    font-size: 1.9rem;
+    color: #fff;
+    margin: 0;
+    text-transform: capitalize;
+  }
+
+  @media screen and (min-width: 750px) {
+    .collection-banner__title {
+      font-size: 3rem;
+    }
+  }
+
+  .collection-banner__description {
+    font-family: var(--font-body--family);
+    font-size: 0.85rem;
+    color: rgb(255 255 255 / 0.9);
+    max-width: 42rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .collection-banner__description {
+      font-size: 1rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Encabezado de colección",
+  "tag": "section",
+  "class": "collection-banner-wrapper",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Imagen de respaldo",
+      "info": "Se usa solo si la colección no tiene imagen propia en Shopify."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Encabezado de colección",
+      "category": "t:categories.collections"
+    }
+  ]
+}
+{% endschema %}

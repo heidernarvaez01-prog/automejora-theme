@@ -1,0 +1,103 @@
+
+
+{% liquid
+  assign block_settings = block.settings
+  assign image_url = block_settings.fallback_image | asset_url
+  if block_settings.image != blank
+    assign image_url = block_settings.image | image_url: width: 900
+  endif
+%}
+
+<a
+  href="{{ block_settings.link }}"
+  class="category-card"
+  style="background-color: {{ block_settings.accent_color }};"
+  {{ block.shopify_attributes }}
+>
+  <img
+    src="{{ image_url }}"
+    alt="{{ block_settings.title | escape }}"
+    loading="lazy"
+    class="category-card__image"
+  />
+  <span class="category-card__scrim" aria-hidden="true"></span>
+  <span class="category-card__badge" style="background-color: {{ block_settings.accent_color }};">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      {%- case block_settings.icon -%}
+        {%- when 'flower' -%}
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 3c1.5 2 1.5 4 0 6-1.5-2-1.5-4 0-6ZM12 21c1.5-2 1.5-4 0-6-1.5 2-1.5 4 0 6ZM3 12c2-1.5 4-1.5 6 0-2 1.5-4 1.5-6 0ZM21 12c-2-1.5-4-1.5-6 0 2 1.5 4 1.5 6 0Z"/>
+        {%- when 'candy' -%}
+          <path d="m9 9-6 6 3.5 3.5a3 3 0 0 0 4.2 0L14 15"/>
+          <path d="m15 15 6-6-3.5-3.5a3 3 0 0 0-4.2 0L10 9"/>
+          <path d="m6.5 11.5 6 6"/>
+        {%- when 'coffee' -%}
+          <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
+          <path d="M3 8h14v7a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
+          <path d="M6 2v2M10 2v2M14 2v2"/>
+        {%- else -%}
+          <path d="M20 12v9H4v-9"/>
+          <path d="M2 7h20v5H2z"/>
+          <path d="M12 22V7"/>
+          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C10 2 12 7 12 7ZM12 7h4.5a2.5 2.5 0 0 0 0-5C14 2 12 7 12 7Z"/>
+      {%- endcase -%}
+    </svg>
+  </span>
+  <span class="category-card__content">
+    <span class="category-card__title">{{ block_settings.title }}</span>
+    <span class="category-card__cta">
+      Explorar
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </span>
+  </span>
+</a>
+
+{% schema %}
+{
+  "name": "Categoría",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Flores & Globos"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Enlace",
+      "info": "Ej: shopify://collections/flores-y-globos"
+    },
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Ícono",
+      "options": [
+        { "value": "gift", "label": "Regalo" },
+        { "value": "candy", "label": "Dulce" },
+        { "value": "coffee", "label": "Café" },
+        { "value": "flower", "label": "Flor" }
+      ],
+      "default": "gift"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de acento",
+      "default": "#a16207"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "text",
+      "id": "fallback_image",
+      "label": "Imagen de respaldo (assets/)",
+      "default": "cover-regalos.jpg"
+    }
+  ]
+}
+{% endschema %}

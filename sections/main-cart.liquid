@@ -80,6 +80,7 @@
 
   .cart-page__more-blocks {
     width: 100%;
+    grid-column: 1 / -1;
   }
 
   .cart-page--empty .cart-title {
@@ -160,6 +161,12 @@
     "groups": ["header", "footer"]
   },
   "blocks": [
+    {
+      "type": "_cart-personalization"
+    },
+    {
+      "type": "_cart-upsells"
+    },
     {
       "type": "@theme"
     },
