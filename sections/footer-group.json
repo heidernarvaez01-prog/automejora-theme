@@ -162,10 +162,19 @@
         "padding-block-start": 20,
         "padding-block-end": 48
       }
+    },
+    "floating_whatsapp": {
+      "type": "floating-whatsapp",
+      "settings": {
+        "phone": "5215527137733",
+        "message": "Hola Emociones a Domicilio, me gustaría más info.",
+        "aria_label": "Chatea por WhatsApp"
+      }
     }
   },
   "order": [
     "footer_m9NzUG",
-    "footer_utilities_jLGE8U"
+    "footer_utilities_jLGE8U",
+    "floating_whatsapp"
   ]
 }
