@@ -344,5 +344,16 @@
       "success_moderated": "Comentario publicado y a la espera de moderación",
       "success": "Comentario publicado"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "contact": {
+        "optional_first_name_label": "Nombre de Quien Recibe",
+        "last_name_label": "Teléfono de Quien Recibe",
+        "optional_company_label": "Nombre de Quien Envía",
+        "address1_label": "Dirección de Quien Recibe",
+        "email_or_phone_label": "Email ó Número para Recibir Notificaciones del Pedido"
+      }
+    }
   }
 }

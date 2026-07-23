@@ -1,0 +1,199 @@
+
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="trust-badges-section section spacing-style section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}" style="{% render 'spacing-style', settings: section.settings %}">
+  {% if section.settings.heading != blank or section.settings.subheading != blank %}
+    <div class="trust-badges__heading">
+      {% if section.settings.heading != blank %}
+        <h2 class="trust-badges__title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="trust-badges__subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+  <div class="trust-badges__grid">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .trust-badges-section {
+    position: relative;
+  }
+
+  .trust-badges__heading {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .trust-badges__title {
+    font-family: var(--font-heading--family);
+    font-weight: 600;
+    font-size: 1.75rem;
+    color: var(--color-foreground-heading);
+    margin: 0 0 8px;
+  }
+
+  .trust-badges__subtitle {
+    font-family: var(--font-body--family);
+    color: var(--color-foreground-muted);
+    max-width: 34rem;
+    margin: 0 auto;
+  }
+
+  .trust-badges__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .trust-badges__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+  }
+
+  .trust-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .trust-badge__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    color: var(--color-primary-button-background, #e0115f);
+    border: 1.5px solid currentColor;
+  }
+
+  .trust-badge__icon svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .trust-badge__heading {
+    font-family: var(--font-heading--family);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--color-foreground-heading);
+    margin: 0;
+  }
+
+  .trust-badge__text {
+    font-family: var(--font-body--family);
+    font-size: 0.9rem;
+    color: var(--color-foreground-muted);
+    max-width: 26rem;
+  }
+
+  .trust-badge__text p {
+    margin: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Insignias de confianza",
+  "tag": "section",
+  "class": "trust-badges-wrapper",
+  "blocks": [
+    {
+      "type": "_trust-badge"
+    }
+  ],
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subtítulo"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho",
+      "options": [
+        { "value": "page-width", "label": "Ancho de página" },
+        { "value": "full-width", "label": "Ancho completo" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Insignias de confianza",
+      "category": "t:categories.text",
+      "blocks": {
+        "badge_1": {
+          "type": "_trust-badge",
+          "settings": {
+            "icon": "coupon",
+            "heading": "Cupones de descuento",
+            "text": "<p>Agradecemos tu preferencia y no solo eso, ¡también la premiamos! Si eres cliente regular obtendrás cupones de descuento para tu siguiente compra.</p>"
+          }
+        },
+        "badge_2": {
+          "type": "_trust-badge",
+          "settings": {
+            "icon": "coverage",
+            "heading": "Cobertura",
+            "text": "<p>Estamos contigo, cerca de ti y de a quien más quieras, siempre. Contamos con entregas en la Ciudad de México y Estado de México.</p>"
+          }
+        },
+        "badge_3": {
+          "type": "_trust-badge",
+          "settings": {
+            "icon": "payment",
+            "heading": "Métodos de pago",
+            "text": "<p>Aceptamos Transferencia bancaria, todas las Tarjetas de Crédito y Débito, PayPal, Oxxo y Depósito Bancario.</p>"
+          }
+        }
+      },
+      "block_order": ["badge_1", "badge_2", "badge_3"]
+    }
+  ]
+}
+{% endschema %}

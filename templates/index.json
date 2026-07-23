@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "slideshow_7PjHTC": {
       "type": "slideshow",
@@ -30,10 +31,10 @@
             "overlay_color": "#00000059",
             "overlay_style": "solid",
             "gradient_direction": "to top",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-block-start": 40,
+            "padding-block-end": 40,
+            "padding-inline-start": 40,
+            "padding-inline-end": 40
           },
           "blocks": {
             "text_heading": {
@@ -55,10 +56,10 @@
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-block-start": 20,
+                "padding-block-end": 20,
+                "padding-inline-start": 30,
+                "padding-inline-end": 30
               },
               "blocks": {}
             },
@@ -77,13 +78,13 @@
                 "case": "none",
                 "wrap": "pretty",
                 "color": "",
-                "background": false,
-                "background_color": "#00000026",
+                "background": true,
+                "background_color": "#00000059",
                 "corner_radius": 0,
-                "padding-block-start": 0,
+                "padding-block-start": 20,
                 "padding-block-end": 20,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-start": 30,
+                "padding-inline-end": 30
               },
               "blocks": {}
             },
@@ -120,13 +121,13 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 14,
+            "gap": 15,
             "inherit_color_scheme": false,
             "color_scheme": "scheme-6",
             "toggle_overlay": true,
             "overlay_color": "#00000059",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
+            "overlay_style": "gradient",
+            "gradient_direction": "to bottom",
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -149,13 +150,13 @@
                 "case": "none",
                 "wrap": "pretty",
                 "color": "",
-                "background": false,
-                "background_color": "#00000026",
+                "background": true,
+                "background_color": "#0000004A",
                 "corner_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-start": 40,
+                "padding-inline-end": 40
               },
               "blocks": {}
             },
@@ -174,13 +175,13 @@
                 "case": "none",
                 "wrap": "pretty",
                 "color": "",
-                "background": false,
-                "background_color": "#00000026",
+                "background": true,
+                "background_color": "#00000075",
                 "corner_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 20,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-start": 40,
+                "padding-inline-end": 40
               },
               "blocks": {}
             },
@@ -219,13 +220,13 @@
             "vertical_alignment_flex_direction_column": "center",
             "gap": 14,
             "inherit_color_scheme": false,
-            "color_scheme": "scheme-6",
+            "color_scheme": "scheme-5",
             "toggle_overlay": true,
             "overlay_color": "#00000059",
             "overlay_style": "solid",
             "gradient_direction": "to top",
             "padding-block-start": 0,
-            "padding-block-end": 0,
+            "padding-block-end": 80,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -311,7 +312,7 @@
       "name": "t:names.slideshow_full_frame",
       "settings": {
         "display_mode": "full_frame",
-        "section_width": "page-width",
+        "section_width": "full-width",
         "full_frame_on_mobile": false,
         "slideshow_gap": 12,
         "corner_radius": 0,
@@ -323,8 +324,8 @@
         "slideshow_controls_style": "dots",
         "autoplay": true,
         "autoplay_speed": 5,
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-start": 60,
+        "padding-block-end": 60
       }
     },
     "category_grid": {
@@ -385,6 +386,62 @@
       "settings": {
         "heading": "Explora nuestras categorías",
         "subheading": "Cuatro mundos para encontrar el regalo perfecto.",
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "process_steps": {
+      "type": "process-steps",
+      "name": "Cómo funciona",
+      "settings": {
+        "heading": "",
+        "image": "",
+        "fallback_image": "process-steps-banner.webp",
+        "alt": "Elige tu regalo, agrega una dedicatoria, escoge la fecha, indica la ubicación y recibe la entrega",
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "trust_badges": {
+      "type": "trust-badges",
+      "blocks": {
+        "badge_1": {
+          "type": "_trust-badge",
+          "settings": {
+            "icon": "coupon",
+            "heading": "Cupones de descuento",
+            "text": "<p>Agradecemos tu preferencia y no solo eso, ¡también la premiamos! Si eres cliente regular obtendrás cupones de descuento para tu siguiente compra.</p>"
+          },
+          "blocks": {}
+        },
+        "badge_2": {
+          "type": "_trust-badge",
+          "settings": {
+            "icon": "coverage",
+            "heading": "Cobertura",
+            "text": "<p>Estamos contigo, cerca de ti y de a quien más quieras, siempre. Contamos con entregas en la Ciudad de México y Estado de México.</p>"
+          },
+          "blocks": {}
+        },
+        "badge_3": {
+          "type": "_trust-badge",
+          "settings": {
+            "icon": "payment",
+            "heading": "Métodos de pago",
+            "text": "<p>Aceptamos Transferencia bancaria, todas las Tarjetas de Crédito y Débito, PayPal, Oxxo y Depósito Bancario.</p>"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["badge_1", "badge_2", "badge_3"],
+      "name": "Insignias de confianza",
+      "settings": {
+        "heading": "",
+        "subheading": "",
         "section_width": "page-width",
         "color_scheme": "scheme-1",
         "padding-block-start": 48,
@@ -668,6 +725,8 @@
   "order": [
     "slideshow_7PjHTC",
     "category_grid",
+    "process_steps",
+    "trust_badges",
     "reviews_marquee",
     "cta_banner",
     "arc_gallery"
