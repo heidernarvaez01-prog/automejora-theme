@@ -29,7 +29,7 @@
     {% endstyle %}
   {% endif %}
 
-  <div class="slide__image-container{% if rounded_image_corners %} slide__image-container--rounded{% endif %}">
+  <div class="slide__image-container{% if rounded_image_corners %} slide__image-container--rounded{% endif %}{% if block_settings.mobile_fit_contain and block_settings.inherit_color_scheme == false %} color-{{ block_settings.color_scheme }}{% endif %}">
     {%- if block_settings.toggle_overlay -%}
       {% render 'overlay', settings: block_settings %}
     {%- endif -%}
@@ -57,14 +57,25 @@
         endif
       -%}
 
+      {%- liquid
+        assign image_class = 'slide__image'
+        assign video_class = 'slide__video'
+        assign poster_class = 'slide__video-poster'
+        if block_settings.mobile_fit_contain
+          assign image_class = image_class | append: ' slide__media--contain-mobile'
+          assign video_class = video_class | append: ' slide__media--contain-mobile'
+          assign poster_class = poster_class | append: ' slide__media--contain-mobile'
+        endif
+      -%}
+
       {%- if block_settings.media_type_1 == 'image' -%}
         {{
           block_settings.image_1
           | image_url: width: 3840
-          | image_tag: height: height, sizes: sizes, widths: widths, class: 'slide__image', loading: loading, fetchpriority: fetchpriority
+          | image_tag: height: height, sizes: sizes, widths: widths, class: image_class, loading: loading, fetchpriority: fetchpriority
         }}
       {%- elsif block_settings.media_type_1 == 'video_asset' -%}
-        <video class="slide__video" autoplay muted loop playsinline preload="auto">
+        <video class="{{ video_class }}" autoplay muted loop playsinline preload="auto">
           <source src="{{ block_settings.video_asset | asset_url }}" type="video/mp4">
         </video>
       {%- else -%}
@@ -78,13 +89,13 @@
               sizes: sizes,
               widths: widths,
               loading: loading,
-              class: 'slide__video-poster',
+              class: poster_class,
               fetchpriority: fetchpriority
           }}
         {%- endif -%}
         {{
           block_settings.video_1
-          | video_tag: poster: nil, autoplay: true, loop: true, controls: false, muted: true, class: 'slide__video'
+          | video_tag: poster: nil, autoplay: true, loop: true, controls: false, muted: true, class: video_class
         }}
       {%- endif -%}
     {%- else -%}
@@ -159,6 +170,16 @@
     height: 100%;
     object-fit: cover;
     object-position: center center;
+  }
+
+  @media screen and (max-width: 749px) {
+    .slide__image-container > .slide__media--contain-mobile {
+      object-fit: contain;
+    }
+
+    .slide__image-container:has(.slide__media--contain-mobile) {
+      background-color: var(--color-background);
+    }
   }
 
   .slide__image-container > .slide__video-poster {
@@ -394,6 +415,13 @@
       "label": "t:settings.color_scheme",
       "default": "scheme-1",
       "visible_if": "{{ block.settings.inherit_color_scheme == false }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_fit_contain",
+      "label": "Mostrar imagen completa en móvil (sin recortar)",
+      "info": "Útil para banners panorámicos con texto importante en los bordes.",
+      "default": false
     },
     {
       "type": "checkbox",

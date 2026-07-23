@@ -16,7 +16,30 @@
       , {{ powered_by_link }}
     {%- endif -%}
   </span>
+  {%- if block_settings.show_agency_credit -%}
+    <span class="footer-utilities__text footer-utilities__agency-credit">
+      Hecho con
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="footer-utilities__heart"><path d="M12 21s-7.5-4.873-10.2-9.428C.24 8.77 1.5 5 5.1 5c2.1 0 3.6 1.263 4.9 3 1.3-1.737 2.8-3 4.9-3 3.6 0 4.86 3.77 3.3 6.572C19.5 16.127 12 21 12 21Z"/></svg>
+      por
+      <a href="{{ block_settings.agency_url }}" target="_blank" rel="noopener noreferrer">{{ block_settings.agency_name }}</a>
+    </span>
+  {%- endif -%}
 </div>
+
+{% stylesheet %}
+  .footer-utilities__agency-credit {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-inline-start: 8px;
+  }
+
+  .footer-utilities__heart {
+    width: 12px;
+    height: 12px;
+    color: var(--color-primary-button-background, currentColor);
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -32,6 +55,28 @@
     {
       "type": "paragraph",
       "content": "t:content.manage_store_name"
+    },
+    {
+      "type": "header",
+      "content": "Crédito de la agencia"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_agency_credit",
+      "label": "Mostrar crédito de la agencia",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "agency_name",
+      "label": "Nombre de la agencia",
+      "default": "apachestudio.mx"
+    },
+    {
+      "type": "text",
+      "id": "agency_url",
+      "label": "Enlace de la agencia",
+      "default": "https://apachestudio.mx"
     },
     {
       "type": "select",
