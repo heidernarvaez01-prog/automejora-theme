@@ -45,13 +45,13 @@
           "type": "_cart-summary",
           "static": true,
           "settings": {
-            "extend_summary": true,
+            "extend_summary": false,
             "inherit_color_scheme": false,
             "color_scheme": "scheme-2",
-            "border": "none",
+            "border": "solid",
             "border_width": 1,
             "border_opacity": 100,
-            "border_radius": 0
+            "border_radius": 16
           },
           "blocks": {}
         },
