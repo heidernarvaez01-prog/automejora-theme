@@ -1,0 +1,36 @@
+{%- doc -%}
+  Renders the cart checkout button plus Shopify's dynamic/accelerated checkout
+  buttons (Shop Pay, PayPal, Google Pay, etc). Extracted from cart-summary.liquid
+  so it can be positioned independently of the totals panel while still reacting
+  to cart AJAX updates (the parent element must be a <cart-items-component>).
+
+  @param {string} [accelerated_checkout_buttons_layout] - { 'vertical' } Forced layout of the additional checkout buttons, instead of relying on platform's layout.
+{%- enddoc -%}
+
+<div class="cart__ctas">
+  <button
+    type="submit"
+    id="checkout"
+    class="cart__checkout-button button"
+    name="checkout"
+    {% if cart == empty %}
+      disabled
+    {% endif %}
+    form="cart-form"
+  >
+    <span class="button-text">
+      {{ 'content.checkout' | t }}
+    </span>
+  </button>
+
+  {% if additional_checkout_buttons and settings.show_accelerated_checkout_buttons %}
+    <div
+      class="
+        additional-checkout-buttons
+        {% if accelerated_checkout_buttons_layout == 'vertical' %}additional-checkout-buttons--vertical{% endif %}
+      "
+    >
+      {{ content_for_additional_checkout_buttons }}
+    </div>
+  {% endif %}
+</div>

@@ -3,7 +3,15 @@
 
   @param {string} [accelerated_checkout_buttons_layout] - { 'vertical' } Forced layout of the additional checkout buttons, instead of relying on platform's layout.
   @param {string} [section_id] - The section ID for cart discount component.
+  @param {boolean} [show_ctas] - Whether to render the checkout button + dynamic checkout buttons here. Defaults to true; pass false when they're rendered elsewhere (see cart-checkout-buttons.liquid).
 {%- enddoc -%}
+
+{%- liquid
+  assign render_ctas = true
+  if show_ctas == false
+    assign render_ctas = false
+  endif
+-%}
 
 <div class="cart-totals">
   {% # We need to keep this node in place to allow morphing to work properly # %}
@@ -253,33 +261,9 @@
   </div>
 </div>
 
-<div class="cart__ctas">
-  <button
-    type="submit"
-    id="checkout"
-    class="cart__checkout-button button"
-    name="checkout"
-    {% if cart == empty %}
-      disabled
-    {% endif %}
-    form="cart-form"
-  >
-    <span class="button-text">
-      {{ 'content.checkout' | t }}
-    </span>
-  </button>
-
-  {% if additional_checkout_buttons and settings.show_accelerated_checkout_buttons %}
-    <div
-      class="
-        additional-checkout-buttons
-        {% if accelerated_checkout_buttons_layout == 'vertical' %}additional-checkout-buttons--vertical{% endif %}
-      "
-    >
-      {{ content_for_additional_checkout_buttons }}
-    </div>
-  {% endif %}
-</div>
+{% if render_ctas %}
+  {% render 'cart-checkout-buttons', accelerated_checkout_buttons_layout: accelerated_checkout_buttons_layout %}
+{% endif %}
 
 {% stylesheet %}
   .cart-actions {

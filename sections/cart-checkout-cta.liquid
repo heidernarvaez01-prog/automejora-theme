@@ -1,0 +1,76 @@
+{% comment %}
+  Standalone checkout button + dynamic checkout buttons for the cart page,
+  positioned independently from the totals summary (e.g. after recommended
+  products). Wrapped in <cart-items-component> so it keeps reacting to the
+  same AJAX cart update events as the rest of the cart (enabled/disabled
+  state, discount updates) without needing its own JS.
+{% endcomment %}
+
+<cart-items-component class="cart-checkout-cta-component" data-section-id="{{ section.id }}">
+  <div class="section-background color-{{ section.settings.color_scheme }}"></div>
+  <div class="section color-{{ section.settings.color_scheme }} section--{{ section.settings.section_width }}">
+    <div class="cart-checkout-cta spacing-style" style="{% render 'spacing-style', settings: section.settings %}">
+      {% render 'cart-checkout-buttons', accelerated_checkout_buttons_layout: 'vertical' %}
+    </div>
+  </div>
+</cart-items-component>
+
+{% stylesheet %}
+  .cart-checkout-cta {
+    max-width: var(--sidebar-width, 28rem);
+    margin-inline: auto;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Botones de pago (carrito)",
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        { "value": "page-width", "label": "t:options.page" },
+        { "value": "full-width", "label": "t:options.full" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Botones de pago (carrito)"
+    }
+  ]
+}
+{% endschema %}

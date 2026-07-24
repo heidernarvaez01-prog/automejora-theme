@@ -22,7 +22,7 @@
   {{ block.shopify_attributes }}
 >
   <div class="{{ cart_summary_inner_class }}">
-    {% render 'cart-summary', accelerated_checkout_buttons_layout: 'vertical', section_id: section.id %}
+    {% render 'cart-summary', accelerated_checkout_buttons_layout: 'vertical', section_id: section.id, show_ctas: false %}
   </div>
 </div>
 
