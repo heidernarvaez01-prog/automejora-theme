@@ -22,7 +22,7 @@
   .floating-whatsapp {
     position: fixed;
     inset-block-end: max(20px, env(safe-area-inset-bottom));
-    inset-inline-end: 20px;
+    inset-inline-start: 20px;
     z-index: var(--layer-sticky);
     display: flex;
     align-items: center;
@@ -48,7 +48,7 @@
 
   @media screen and (min-width: 750px) {
     .floating-whatsapp {
-      inset-inline-end: 32px;
+      inset-inline-start: 32px;
       inset-block-end: 32px;
     }
   }

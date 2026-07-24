@@ -253,15 +253,6 @@
     "trust_badges": {
       "type": "trust-badges",
       "blocks": {
-        "badge_1": {
-          "type": "_trust-badge",
-          "settings": {
-            "icon": "coupon",
-            "heading": "Cupones de descuento",
-            "text": "<p>Agradecemos tu preferencia y no solo eso, ¡también la premiamos! Si eres cliente regular obtendrás cupones de descuento para tu siguiente compra.</p>"
-          },
-          "blocks": {}
-        },
         "badge_2": {
           "type": "_trust-badge",
           "settings": {
@@ -281,7 +272,7 @@
           "blocks": {}
         }
       },
-      "block_order": ["badge_1", "badge_2", "badge_3"],
+      "block_order": ["badge_2", "badge_3"],
       "name": "Insignias de confianza",
       "settings": {
         "heading": "",

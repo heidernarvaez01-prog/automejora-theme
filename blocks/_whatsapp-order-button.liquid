@@ -8,7 +8,8 @@
   assign block_settings = block.settings
   assign product_price = closest.product.price | money_without_currency
   assign message = 'Hola, quiero pedir: ' | append: closest.product.title | append: ' ($' | append: product_price | append: ' MXN)'
-  assign wa_url = block_settings.phone | prepend: 'https://wa.me/' | append: '?text=' | append: message | url_encode
+  assign encoded_message = message | url_encode
+  assign wa_url = block_settings.phone | prepend: 'https://wa.me/' | append: '?text=' | append: encoded_message
 %}
 
 <a

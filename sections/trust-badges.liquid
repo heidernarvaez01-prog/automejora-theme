@@ -12,7 +12,7 @@
       {% endif %}
     </div>
   {% endif %}
-  <div class="trust-badges__grid">
+  <div class="trust-badges__grid trust-badges__grid--blocks-{{ section.blocks.size }}">
     {% content_for 'blocks' %}
   </div>
 </div>
@@ -52,6 +52,16 @@
     .trust-badges__grid {
       grid-template-columns: repeat(3, 1fr);
       gap: 40px;
+    }
+
+    .trust-badges__grid--blocks-1 {
+      grid-template-columns: minmax(0, 22rem);
+      justify-content: center;
+    }
+
+    .trust-badges__grid--blocks-2 {
+      grid-template-columns: repeat(2, minmax(0, 22rem));
+      justify-content: center;
     }
   }
 
