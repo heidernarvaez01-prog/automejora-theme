@@ -39,7 +39,8 @@
               "type": "logo",
               "settings": {
                 "unit": "pixel",
-                "pixel_height": 56
+                "pixel_height": 56,
+                "inverse": true
               }
             },
             "heading": {
