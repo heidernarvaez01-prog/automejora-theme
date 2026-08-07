@@ -168,8 +168,8 @@
         "slideshow_controls_style": "dots",
         "autoplay": true,
         "autoplay_speed": 5,
-        "padding-block-start": 60,
-        "padding-block-end": 60
+        "padding-block-start": 36,
+        "padding-block-end": 36
       }
     },
     "category_grid": {
@@ -232,8 +232,8 @@
         "subheading": "Cuatro mundos para encontrar el regalo perfecto.",
         "section_width": "page-width",
         "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 28,
+        "padding-block-end": 28
       }
     },
     "process_steps": {
@@ -246,8 +246,8 @@
         "alt": "Elige tu regalo, agrega una dedicatoria, escoge la fecha, indica la ubicación y recibe la entrega",
         "section_width": "page-width",
         "color_scheme": "scheme-1",
-        "padding-block-start": 40,
-        "padding-block-end": 40
+        "padding-block-start": 20,
+        "padding-block-end": 20
       }
     },
     "trust_badges": {
@@ -279,8 +279,8 @@
         "subheading": "",
         "section_width": "page-width",
         "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 28,
+        "padding-block-end": 28
       }
     },
     "reviews_marquee": {
@@ -294,8 +294,8 @@
         "validate_url": "",
         "section_width": "page-width",
         "color_scheme": "scheme-1",
-        "padding-block-start": 64,
-        "padding-block-end": 64
+        "padding-block-start": 40,
+        "padding-block-end": 40
       }
     },
     "cta_banner": {
@@ -455,8 +455,8 @@
         "overlay_color": "#a1620714",
         "overlay_style": "gradient",
         "gradient_direction": "to top",
-        "padding-block-start": 80,
-        "padding-block-end": 80
+        "padding-block-start": 48,
+        "padding-block-end": 48
       }
     },
     "arc_gallery": {
@@ -552,8 +552,8 @@
         "badge_sublabel_4": "personalizados",
         "section_width": "full-width",
         "color_scheme": "scheme-1",
-        "padding-block-start": 64,
-        "padding-block-end": 64
+        "padding-block-start": 40,
+        "padding-block-end": 40
       }
     }
   },

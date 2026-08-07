@@ -88,6 +88,13 @@
   }
 {% endstylesheet %}
 
+{% style %}
+  .card-gallery-{{ block.id }} {
+    --product-card-frame-color: 122, 19, 48;
+    border-color: rgb(var(--product-card-frame-color) / {{ block.settings.border_opacity | default: 100 | divided_by: 100.0 }}) !important;
+  }
+{% endstyle %}
+
 {% schema %}
 {
   "name": "t:names.product_image",

@@ -459,10 +459,10 @@
               "name": "t:names.product_card_media",
               "settings": {
                 "image_ratio": "square",
-                "border": "none",
-                "border_width": 1,
+                "border": "solid",
+                "border_width": 2,
                 "border_opacity": 100,
-                "border_radius": 0,
+                "border_radius": 8,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
