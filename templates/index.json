@@ -182,6 +182,7 @@
             "link": "shopify://collections/chocolates-dulces",
             "icon": "candy",
             "accent_color": "#c2542a",
+            "image": "shopify://shop_images/tmp-cat-chocolates.jpg",
             "fallback_image": "cover-chocolates.jpg"
           },
           "blocks": {}
@@ -204,6 +205,7 @@
             "link": "shopify://collections/desayunos-brunch",
             "icon": "coffee",
             "accent_color": "#3f7a52",
+            "image": "shopify://shop_images/tmp-cat-desayunos.jpg",
             "fallback_image": "cover-brunch.jpg"
           },
           "blocks": {}
@@ -215,6 +217,7 @@
             "link": "shopify://collections/flores-globos",
             "icon": "flower",
             "accent_color": "#c23368",
+            "image": "shopify://shop_images/tmp-cat-flores.jpg",
             "fallback_image": "cover-floresglobos.jpg"
           },
           "blocks": {}
