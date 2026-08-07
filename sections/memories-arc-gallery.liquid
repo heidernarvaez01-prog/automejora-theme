@@ -11,16 +11,18 @@
 >
   <div class="arc-gallery__ring">
     {% content_for 'blocks' %}
+
+    <div class="arc-gallery__heading-wrap">
+      {% if section.settings.heading != blank %}
+        <h2 class="arc-gallery__title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="arc-gallery__subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
   </div>
 
   <div class="arc-gallery__content">
-    {% if section.settings.heading != blank %}
-      <h2 class="arc-gallery__title">{{ section.settings.heading }}</h2>
-    {% endif %}
-    {% if section.settings.subheading != blank %}
-      <p class="arc-gallery__subtitle">{{ section.settings.subheading }}</p>
-    {% endif %}
-
     {% if section.settings.show_badges %}
       {% liquid
         assign badge_icons = 'heart,gift,truck,sparkles' | split: ','
@@ -91,6 +93,28 @@
     transform: translate(-50%, 50%) scale(1) rotate(var(--arc-rotate, 0deg));
   }
 
+  .arc-gallery__heading-wrap {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    max-width: 34rem;
+    margin-inline: auto;
+    padding-inline: 16px;
+    text-align: center;
+    z-index: var(--layer-base);
+    pointer-events: none;
+  }
+
+  .arc-gallery__heading-wrap > * {
+    pointer-events: auto;
+  }
+
   .arc-gallery__content {
     position: relative;
     z-index: var(--layer-flat);
@@ -100,22 +124,11 @@
     text-align: center;
   }
 
-  @media screen and (min-width: 750px) {
-    .arc-gallery__content {
-      margin-top: 12px;
-    }
-  }
-
-  @media screen and (min-width: 990px) {
-    .arc-gallery__content {
-      margin-top: 0;
-    }
-  }
-
   .arc-gallery__title {
     font-family: var(--font-heading--family);
     font-weight: 600;
-    font-size: 1.9rem;
+    font-size: 1.4rem;
+    line-height: 1.15;
     letter-spacing: -0.01em;
     color: var(--color-foreground-heading);
     margin: 0;
@@ -123,15 +136,21 @@
 
   @media screen and (min-width: 750px) {
     .arc-gallery__title {
-      font-size: 3.5rem;
+      font-size: 2.5rem;
     }
   }
 
   .arc-gallery__subtitle {
-    margin: 16px 0 0;
+    margin: 0;
     font-family: var(--font-body--family);
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     color: var(--color-foreground-muted);
+  }
+
+  @media screen and (min-width: 750px) {
+    .arc-gallery__subtitle {
+      font-size: 1.05rem;
+    }
   }
 
   .arc-gallery__badges {

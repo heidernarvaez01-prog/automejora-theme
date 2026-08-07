@@ -20,9 +20,9 @@ class ArcGalleryComponent extends HTMLElement {
 
   getDimensions() {
     const width = window.innerWidth;
-    if (width < 640) return { radius: 260, size: 80 };
-    if (width < 1024) return { radius: 360, size: 100 };
-    return { radius: 480, size: 120 };
+    if (width < 640) return { radius: 245, size: 80 };
+    if (width < 1024) return { radius: 320, size: 100 };
+    return { radius: 400, size: 120 };
   }
 
   layout() {
