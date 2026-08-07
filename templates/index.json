@@ -444,7 +444,7 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 20,
         "section_width": "page-width",
-        "section_height": "small",
+        "section_height": "",
         "section_height_custom": 50,
         "color_scheme": "scheme-1",
         "background_media": "none",
@@ -458,8 +458,8 @@
         "overlay_color": "#a1620714",
         "overlay_style": "gradient",
         "gradient_direction": "to top",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 40,
+        "padding-block-end": 40
       }
     },
     "arc_gallery": {
