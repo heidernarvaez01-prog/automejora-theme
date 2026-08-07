@@ -15,8 +15,8 @@
         "slide_amor": {
           "type": "_slide",
           "settings": {
-            "media_type_1": "video_asset",
-            "video_asset": "hero-video-amor.mp4",
+            "media_type_1": "image",
+            "image_1": "shopify://shop_images/tmp-hero-slide1.jpg",
             "mobile_fit_contain": true,
             "content_direction": "column",
             "vertical_on_mobile": true,
