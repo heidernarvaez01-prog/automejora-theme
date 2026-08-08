@@ -190,10 +190,11 @@
         "card_2": {
           "type": "_category-card",
           "settings": {
-            "title": "Regalos",
-            "link": "shopify://collections/regalos-cajas",
+            "title": "Cumpleaños",
+            "link": "shopify://collections/cumpleanos",
             "icon": "gift",
             "accent_color": "#a16207",
+            "image": "shopify://shop_images/tmp-cat-cumpleanos.png",
             "fallback_image": "cover-regalos.jpg"
           },
           "blocks": {}
@@ -201,24 +202,24 @@
         "card_3": {
           "type": "_category-card",
           "settings": {
-            "title": "Comestibles Impresos",
-            "link": "shopify://collections/comestibles-impresos",
-            "icon": "printer",
-            "accent_color": "#1f7a6c",
-            "image": "shopify://shop_images/947def_obleas-1_p2w3Vi.png",
-            "fallback_image": "cover-chocolates.jpg"
+            "title": "Flores",
+            "link": "shopify://collections/flores-globos",
+            "icon": "flower",
+            "accent_color": "#c23368",
+            "image": "shopify://shop_images/tmp-cat-flores.jpg",
+            "fallback_image": "cover-floresglobos.jpg"
           },
           "blocks": {}
         },
         "card_4": {
           "type": "_category-card",
           "settings": {
-            "title": "Fechas especiales",
-            "link": "shopify://collections/navidad",
-            "icon": "calendar",
-            "accent_color": "#a31f2e",
-            "image": "shopify://shop_images/f9fcad_choconavidad_A69g.png",
-            "fallback_image": "cover-floresglobos.jpg"
+            "title": "Chocolates",
+            "link": "shopify://collections/chocolates-dulces",
+            "icon": "candy",
+            "accent_color": "#c2542a",
+            "image": "shopify://shop_images/tmp-cat-chocolates.jpg",
+            "fallback_image": "cover-chocolates.jpg"
           },
           "blocks": {}
         }
