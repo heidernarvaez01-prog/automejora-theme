@@ -692,6 +692,31 @@
     /* preserves the inherited grid layout when this submenu wrapper is used */
     display: contents;
   }
+
+  /* Compact dropdown: anchor the submenu under its own menu item instead of
+     spanning the full header width. Only applies to the regular top nav
+     (not the mobile "overflow"/more menu, which already has its own popover). */
+  .menu-list__list-item:where(:not([slot='overflow'])) {
+    position: relative;
+  }
+
+  .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu {
+    left: 0;
+    width: max-content;
+    min-width: 220px;
+    max-width: 320px;
+    padding-inline: 0;
+    border-radius: var(--style-border-radius-cards, 8px);
+    box-shadow: var(--shadow-popover);
+  }
+
+  .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu {
+    padding-inline: 0;
+  }
+
+  .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu__grid {
+    grid-template-columns: 1fr;
+  }
 {% endstylesheet %}
 
 {% schema %}
